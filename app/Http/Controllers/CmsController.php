@@ -196,4 +196,32 @@ class CmsController extends Controller {
         }
     }
 
+    public function replace_image($form_name,$id){
+        if (isset($_FILES['file']['name'])) {
+            $file_name = $_FILES['file']['name'];
+            if ($_FILES['file']['error'] == 0) {
+                if($this->check_file_existence($file_name)){
+                    $this->active_repo->replace_image($form_name,$file_name,$id);
+                }
+                if($form_name == "team"){
+                    $team = $this->active_repo->get_team();
+                    return view('cms.team', [
+                      'team' => $team,
+                    ]);
+                }else if($form_name == "video"){
+                    $video = $this->active_repo->get_video();
+                    return view('cms.video', [
+                      'video' => $video,
+                    ]);
+                }else if($form_name == "blog"){
+                    $blog = $this->active_repo->get_blog_details($id);
+                    return view('cms.blog_details', [
+                      'blog' => $blog,
+                    ]);
+                }
+            }
+        }
+    }
+
+
 }

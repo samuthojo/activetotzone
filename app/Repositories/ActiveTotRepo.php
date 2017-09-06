@@ -110,23 +110,13 @@ public function save_changes($form_name, $request){
 
   public function replace_image($form_name,$file_name,$id){
       if($form_name == "team"){
-          $team_details = array(
-              'image' => $file_name,
-          );
+          Team::where('id', $id)->update(['image' => $file_name,]);
 
-          $this->db->update('tbl_team',$team_details,array('id' => $id));
       }else if($form_name == "video"){
-          $video_details = array(
-              'image' => $file_name,
-          );
+          Video::where('id', $id)->update(['image' => $file_name,]);
 
-          $this->db->update('tbl_video',$video_details,array('id' => $id));
       }else if($form_name == "blog"){
-          $blog_details = array(
-              'image' => $file_name,
-          );
-
-          $this->db->update('tbl_blog',$blog_details,array('id' => $id));
+          Blog::where('id', $id)->update(['image' => $file_name,]);
       }
   }
 

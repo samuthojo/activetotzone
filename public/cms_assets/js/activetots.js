@@ -197,6 +197,11 @@ function replace_team_image(id){
 
     datas.append("file",file);
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     $.ajax({
         type: 'post',
         dataType: 'html',
@@ -243,6 +248,12 @@ function replace_video_image(id){
     var file = $('#file').val();
 
     datas.append("file",file);
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     $.ajax({
         type: 'post',
@@ -305,6 +316,11 @@ function replace_blog_image(id){
 
     datas.append("file",file);
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     $.ajax({
         type: 'post',
         dataType: 'html',
