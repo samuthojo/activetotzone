@@ -43,13 +43,10 @@ class EventsController extends Controller {
 
     public function create() {
       function saveThumb(Request $request){
-
             $image = $request->file('image_url');
 
             $destinationPath = public_path('images/events/');
-
             $img = Image::make($image->getRealPath());
-
             $new_image_name = time().'.'.$image->getClientOriginalExtension();
             $img->save($destinationPath.$new_image_name,20);
 
@@ -68,7 +65,7 @@ class EventsController extends Controller {
             'description' => $request->input('description'),
             'date' => $request->input('date'),
             'time' => $request->input('time'),
-            'venue' => $request->input('venue'),
+            'venue' => $request->input('location'),
             'link' => $request->input('link'),
             'picture' => saveThumb($request),
         ];
