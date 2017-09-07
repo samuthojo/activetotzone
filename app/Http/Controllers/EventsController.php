@@ -65,7 +65,7 @@ class EventsController extends Controller {
             'description' => $request->input('description'),
             'date' => $request->input('date'),
             'time' => $request->input('time'),
-            'venue' => $request->input('location'),
+            'venue' => $request->input('venue'),
             'link' => $request->input('link'),
             'picture' => saveThumb($request),
         ];
