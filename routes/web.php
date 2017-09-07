@@ -20,9 +20,9 @@ Route::get('/contactUs', 'ActiveTotControllerOne@contactUs');
 Route::get('/calendar', 'ActiveTotControllerOne@calendar');
 
 Route::get('read/{blog_id}/{blog_title}', 'ActiveTotControllerTwo@read');
-//Route::get('read/{any}', 'ActiveTotControllerTwo@errorPage')->where('any', '*');
+
 Route::get('watch/{id}/{title}', 'ActiveTotControllerTwo@watch');
-//Route::get('watch/(:any)') = "page/watch/errorpage";
+
 Route::get('watch/(:any)', 'ActiveTotControllerTwo@watch');  "page/watch/$1";
 Route::get('listen/(:any)', 'ActiveTotControllerTwo@listen');
 
@@ -43,9 +43,16 @@ Route::post('cms/change_password_form', 'AdminController@change_password_form');
 Route::post('admin/login', 'AdminController@login');
 Route::get('logout', 'AdminController@logout');
 Route::get('adminstart', 'AdminController@adminstart');
-$route['send_email'] = "page/send_email";
+Route::post('send_email', 'AdminController@send_email');
+
+Route::get('events', 'EventsController@get_events');
+Route::get('event/{id}', 'EventsController@get_single_event');
+Route::get('event_form', 'EventsController@display_form');
+Route::post('create', 'EventsController@create');
 $route['home/(:any)'] = "page/errorpage";
 $route['(:any)'] = 'page/errorpage';
+//Route::get('read/{any}', 'ActiveTotControllerTwo@errorPage')->where('any', '*');
+//Route::get('watch/(:any)') = "page/watch/errorpage";
 
 //Routes below are a result of running make:auth
 Auth::routes();

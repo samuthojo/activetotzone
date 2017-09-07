@@ -5,20 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Login extends Model
+class Event extends Model
 {
     use SoftDeletes;
-
-    protected $table = 'tbl_login';
 
     /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
-
-    public $timestamps = false;
+    protected $dates = ['deleted_at', 'date',];
 
     protected $guarded = ['id',];
 }

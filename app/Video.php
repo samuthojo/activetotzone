@@ -11,6 +11,11 @@ class Video extends Model
 
   protected $table = 'tbl_video';
 
+  /**
+   * The attributes that should be mutated to dates.
+   *
+   * @var array
+   */
   protected $dates = ['deleted_at'];
 
   public $timestamps = false;

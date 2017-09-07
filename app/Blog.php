@@ -11,6 +11,11 @@ class Blog extends Model {
 
     protected $table = 'tbl_blog';
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
     public $timestamps = false;

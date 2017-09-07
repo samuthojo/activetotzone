@@ -11,6 +11,7 @@
     <meta name="keywords" content="Nursery education, nursery school, nursery school kinyerezi, nursery school mikocheni, nursery school dar, nursery school in dar es salaam Tanzania, nursery center dar es salaam, best nursery center, nursery center, nursery center kinyerezi, nursery center mikocheni, kindergarten school, best kindergarten school, kindergarten school dar es salaam, kindergarten center dar es salaam, preschool dar es salaam, best preschool, preschool, preschool center dar es salaam, day care school dar es salaam, day care center dar es salaam, best day care center dar, English medium Tanzania, English medium school, International school dar es salaam, Kids center, Children playground, Active tot zone, activetotzone, Education center, shule za watoto, shule ya watoto, chekechea, kinyerezi, mikocheni">
     <meta name="description" content="At Active Tot's Zone, we strive to provide a safe and developmentally appropriate environment for preschool age children. We teach to the need of each individual child and nurture their interest. Our focus is to provide a stimulating and hands-on educational experience which promotes each child's social, emotional, physical and cognitive development.">
     <meta name="author" content="iPF Softwares" >
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta property="og:url"                content="http://www.activetotzone.com" />
     <meta property="og:type"               content="website" />

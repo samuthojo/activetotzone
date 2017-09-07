@@ -9,6 +9,7 @@ use App\Team;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ActiveTotRepo {
 
@@ -152,27 +153,27 @@ public function save_changes($form_name, $request){
 
   public function change_pass($request){
           $return_status = "";
-          // $old_password = $request->input('old_password');
-          // $new_password = $request->input('new_password');
-          // $confirm_pass = $request->input('confirm_password');
-      //     $user = Auth::user();
-      //     if(strcmp($new_password, $confirm_pass) == 0) {
-      //       if(strcmp($user->password, bcrypt($old_password)) == 0) {
-      //         $user->password = $confirm_pass;
-      //         $user->save();
-      //         $return_status = "Password successfully changed";
-      //       } else {
-      //         $return_status = "Please enter the right old password";
-      //       }
-      //     } else {
-      //       $return_status = "New passwords do not match";
-      //     }
-      //     return $return_status;
-      // }
-      if($request->input('old_password') == null) {
-        return "hi";
-      } else {
-        return "haa";
+          $old_password = $request->input('old_password');
+          $new_password = $request->input('new_password');
+          $confirm_pass = $request->input('confirm_password');
+          $user = Auth::user();
+          if(strcmp($new_password, $confirm_pass) == 0) {
+            if(strcmp($user->password, md5($old_password)) == 0) {
+              $user->password = $confirm_pass;
+              $user->save();
+              $return_status = "Password successfully changed";
+            } else {
+              $return_status = "Please enter the right old password";
+            }
+          } else {
+            $return_status = "New passwords do not match";
+          }
+          return $return_status;
       }
-    }
+    //   if($request->input('old_password') == null) {
+    //     return "hi";
+    //   } else {
+    //     return "haa";
+    //   }
+    // }
 }

@@ -31,7 +31,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Columns that should be mutated to dates
+     * The attributes that should be mutated to dates.
      *
      * @var array
      */
