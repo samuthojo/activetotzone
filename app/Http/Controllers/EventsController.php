@@ -44,24 +44,12 @@ class EventsController extends Controller {
     public function create() {
       function saveThumb(Request $request){
 
-            // Retrieve a file from the request.
-            // file($key = null, $default = null)
             $image = $request->file('image_url');
 
-            // The public_path function returns the fully qualified path to the public directory:
-            // $path = public_path();
             $destinationPath = public_path('images/events/');
 
-            // This method creates a new image resource from file
-            // $img = Image::make('public/foo.jpg')
-
-            // This method expands all symbolic links, resolves relative
-            // references and returns the real path to the file.
-            // public string SplFileInfo::getRealPath ( void )
             $img = Image::make($image->getRealPath());
 
-            // This method returns the original file extension
-            // It is called on an UploadedFile instance
             $new_image_name = time().'.'.$image->getClientOriginalExtension();
             $img->save($destinationPath.$new_image_name,20);
 
