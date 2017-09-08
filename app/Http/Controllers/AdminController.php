@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\ActiveTotRepo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller {
 
@@ -63,7 +64,26 @@ class AdminController extends Controller {
     }
 
     public function change_password_form(Request $request) {
-        $status = $this->active_repo->change_pass($request);
+        function change_pass($request){
+                $return_status = "";
+                $old_password = $request->input('old_password');
+                $new_password = $request->input('new_password');
+                $confirm_pass = $request->input('confirm_password');
+                $user = Auth::user();
+                if(strcmp($new_password, $confirm_pass) == 0) {
+                  if(Hash::check($new_password, $user->password)) {
+                    $user->password = $new_password;
+                    $user->save();
+                    $return_status = "Password successfully changed";
+                  } else {
+                    $return_status = "Please enter the right old password";
+                  }
+                } else {
+                  $return_status = "New passwords do not match";
+                }
+                return $return_status;
+          }
+        $status = change_pass($request);
         $feedback = array('status' => $status);
         echo json_encode($feedback);
     }

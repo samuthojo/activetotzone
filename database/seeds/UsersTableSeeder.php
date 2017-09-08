@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
       DB::table('users')->insert([
           'username' => 'admin',
-          'password' => md5('@dm!n'),
+          'password' => Hash::make('@dm!n'),
       ]);
     }
 }
