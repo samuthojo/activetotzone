@@ -17,4 +17,12 @@ class Event extends Model
     protected $dates = ['deleted_at', 'date',];
 
     protected $guarded = ['id',];
+
+    /**
+    * The storage format of the model's date columns.
+    *
+    * @var string
+    */
+   protected $dateFormat = 'Y-m-d';
+
 }
