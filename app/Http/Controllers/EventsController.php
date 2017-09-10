@@ -10,6 +10,11 @@ class EventsController extends Controller {
     public function get_events() {
       $this->update();
       $events = Event::orderBy('date', 'desc')->get();
+      // $events->map(function($event){
+      //   return {
+      //     status =
+      //   }
+      // });
       return view('events.index', [
         'events' => $events,
       ]);
