@@ -52,15 +52,15 @@ class EventsController extends Controller {
 
             $destinationPath = public_path('images/events/');
             $img = Image::make($image->getRealPath());
-            $new_image_name = time().'.'.$image->getClientOriginalExtension();
-            $img->save($destinationPath.$new_image_name,20);
+            $new_image_name = time() . '.' . $image->getClientOriginalExtension();
+            $img->save($destinationPath.$new_image_name, 20);
 
             $destinationPath = public_path('images/events/thumbs/');
             $thumb_path = $destinationPath.$new_image_name;
 
             $img->resize(rand (400, 800), null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($thumb_path,20);
+            })->save($thumb_path, 20);
 
             return $new_image_name;
         }
@@ -75,7 +75,12 @@ class EventsController extends Controller {
             'picture' => saveThumb($request),
         ];
 
-        return Event::create($event);
+        Event::create($event);
+
+        $events = Event::orderBy('date', 'desc')->get();
+        return view('events.index', [
+          'events' => $events,
+        ]);
     }
 
 }
