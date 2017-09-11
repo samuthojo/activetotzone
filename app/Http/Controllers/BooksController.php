@@ -25,15 +25,15 @@ class BooksController extends Controller
     }
 
     public function add(Request $request) {
-      $book = Book::create([
-              $title = $request->input('title'),
-              $author = $request->input('author'),
-              $date = $request->input('date_published'),
-              $text = $request->input('description'),
+      Book::create([
+              'title' = $request->input('title'),
+              'author' = $request->input('author'),
+              'date_published' = $request->input('date_published'),
+              'description' = $request->input('description'),
               //---To do saving uploaded cover Image
-              $cover_image = $request->file('cover_image')->store('books'),
+              'cover_image' = $request->file('cover_image')->store('books'),
               //---To do saving uploaded book
-              $book_path = $request->file('book')->store('documents'),
+              'book_url' = $request->file('book')->store('documents'),
       ]);
       $books = Book::orderBy('id', 'desc')->get();
       return view('books.index', [
