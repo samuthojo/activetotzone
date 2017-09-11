@@ -66,5 +66,5 @@ Route::get('edit/{id}', 'BooksController@edit');
 //Route::get('watch/(:any)') = "page/watch/errorpage";
 
 //Routes below are a result of running make:auth
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+//Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
