@@ -52,7 +52,7 @@ Route::post('create', 'EventsController@create');
 Route::delete('delete/{id}', 'EventsController@delete');
 Route::get('edit/{id}', 'EventsController@edit');
 
-Route::get('books', 'BooksController@index')
+Route::get('books', 'BooksController@index');
 Route::get('add_book_form', 'BooksController@book_form');
 Route::post('save_book', 'BooksController@save');
 Route::get('view_book/{id}', 'BooksController@view_book');
