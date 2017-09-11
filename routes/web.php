@@ -50,7 +50,8 @@ Route::get('event/{id}', 'EventsController@get_single_event');
 Route::get('event_form', 'EventsController@display_form');
 Route::post('create', 'EventsController@create');
 
-Route::get('add_book_form', 'BooksController@index');
+Route::get('books', 'BooksController@index')
+Route::get('add_book_form', 'BooksController@book_form');
 Route::post('add_book', 'BooksController@add');
 $route['home/(:any)'] = "page/errorpage";
 $route['(:any)'] = 'page/errorpage';

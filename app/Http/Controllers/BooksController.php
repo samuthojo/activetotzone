@@ -19,6 +19,10 @@ class BooksController extends Controller
       ]);
     }
 
+    public function book_form() {
+      return view('books.form');
+    }
+
     public function add(Request $request) {
       $book = Book::create([
               $title = $request->input('title'),
