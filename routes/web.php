@@ -50,13 +50,15 @@ Route::get('event/{id}', 'EventsController@get_single_event');
 Route::get('event_form', 'EventsController@display_form');
 Route::post('create', 'EventsController@create');
 Route::delete('delete/{id}', 'EventsController@delete');
+Route::get('edit/{id}', 'EventsController@edit');
 
 Route::get('books', 'BooksController@index')
 Route::get('add_book_form', 'BooksController@book_form');
-Route::post('add_book', 'BooksController@add');
+Route::post('save_book', 'BooksController@save');
 Route::get('view_book/{id}', 'BooksController@view_book');
 Route::get('download/{id}', 'BooksController@download');
 Route::delete('delete/{id}', 'BooksController@delete');
+Route::get('edit/{id}', 'BooksController@edit');
 
 $route['home/(:any)'] = "page/errorpage";
 $route['(:any)'] = 'page/errorpage';

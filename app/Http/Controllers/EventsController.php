@@ -91,4 +91,11 @@ class EventsController extends Controller {
       ]);
     }
 
+    public function edit($id) {
+      $event = Event::find($id);
+      return view('events.edit_event', [
+        'event' => $event,
+      ]);
+    }
+
 }
