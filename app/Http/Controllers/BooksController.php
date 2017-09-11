@@ -7,11 +7,6 @@ use App\Book;
 
 class BooksController extends Controller
 {
-    protected $active_repo;
-
-    public function __construct(ActiveTotRepo $active_repo) {
-      $this->active_repo = $active_repo;
-    }
 
     public function index() {
       $books = Book::orderBy('id', 'desc')->get();
@@ -20,10 +15,24 @@ class BooksController extends Controller
       ]);
     }
 
+    //View the book in the browser
+    public function view_book($id) {
+      $path = Book::find($id)->book_url;
+      return response()->file($path);
+    }
+
+    //Download the book
+    public function download($id) {
+      $path = Book::find($id)->book_url;
+      return response()->download($path);
+    }
+
+    //form to add a book
     public function book_form() {
       return view('books.form');
     }
 
+    //Store uploaded book
     public function add(Request $request) {
       Book::create([
               'title' = $request->input('title'),
@@ -41,6 +50,7 @@ class BooksController extends Controller
       ]);
     }
 
+    //delete the book
     public function delete($id) {
       $book = Book::find($id);
       $book->delete(); //The book will be softDeleted

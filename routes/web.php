@@ -54,6 +54,8 @@ Route::delete('delete/{id}', 'EventsController@delete');
 Route::get('books', 'BooksController@index')
 Route::get('add_book_form', 'BooksController@book_form');
 Route::post('add_book', 'BooksController@add');
+Route::get('view_book/{id}', 'BooksController@view_book');
+Route::get('download/{id}', 'BooksController@download');
 Route::delete('delete/{id}', 'BooksController@delete');
 
 $route['home/(:any)'] = "page/errorpage";
