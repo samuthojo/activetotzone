@@ -46,6 +46,7 @@ class EventsController extends Controller {
       return view('events.event_form');
     }
 
+    //save the event
     public function create() {
       function saveThumb(Request $request){
             $image = $request->file('image_url');
@@ -82,6 +83,7 @@ class EventsController extends Controller {
         ]);
     }
 
+    //delete the event
     public function delete($id) {
       $event = Event::find($id);
       $event->delete(); //The event will be softDeleted
@@ -91,6 +93,7 @@ class EventsController extends Controller {
       ]);
     }
 
+    //edit the event
     public function edit($id) {
       $event = Event::find($id);
       return view('events.edit_event', [
