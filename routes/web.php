@@ -23,8 +23,8 @@ Route::get('read/{blog_id}/{blog_title}', 'ActiveTotControllerTwo@read');
 
 Route::get('watch/{id}/{title}', 'ActiveTotControllerTwo@watch');
 
-Route::get('watch/(:any)', 'ActiveTotControllerTwo@watch');  "page/watch/$1";
-Route::get('listen/(:any)', 'ActiveTotControllerTwo@listen');
+//Route::get('watch/(:any)', 'ActiveTotControllerTwo@watch');  "page/watch/$1";
+//Route::get('listen/(:any)', 'ActiveTotControllerTwo@listen');
 
 Route::get('admin', 'AdminController@admin_index')->name('admin_index');
 Route::post('cms/replace_image/{form_name}/{id}', 'CmsController@replace_image');
@@ -60,8 +60,8 @@ Route::get('download/{id}', 'BooksController@download');
 Route::delete('delete/{id}', 'BooksController@delete');
 Route::get('edit/{id}', 'BooksController@edit');
 
-$route['home/(:any)'] = "page/errorpage";
-$route['(:any)'] = 'page/errorpage';
+//$route['home/(:any)'] = "page/errorpage";
+//$route['(:any)'] = 'page/errorpage';
 //Route::get('read/{any}', 'ActiveTotControllerTwo@errorPage')->where('any', '*');
 //Route::get('watch/(:any)') = "page/watch/errorpage";
 
