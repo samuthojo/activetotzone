@@ -83,4 +83,13 @@ class EventsController extends Controller {
         ]);
     }
 
+    public function delete($id) {
+      $event = Event::find($id);
+      $event->delete(); //The event will be softDeleted
+      $events = Event::orderBy('date', 'desc')->get();
+      return view('events.index', [
+        'events' => $events,
+      ]);
+    }
+
 }

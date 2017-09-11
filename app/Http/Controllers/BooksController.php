@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
 
 class BooksController extends Controller
 {
@@ -35,6 +36,15 @@ class BooksController extends Controller
               $book_path = $request->file('book')->store('documents'),
       ]);
       $books = Book::orderBy('id', 'desc')->get();
+      return view('books.index', [
+        'books' => $books,
+      ]);
+    }
+
+    public function delete($id) {
+      $book = Book::find($id);
+      $book->delete(); //The book will be softDeleted
+      $books = Book::orderBy('date', 'desc')->get();
       return view('books.index', [
         'books' => $books,
       ]);

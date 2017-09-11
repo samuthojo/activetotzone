@@ -49,10 +49,13 @@ Route::get('events', 'EventsController@get_events');
 Route::get('event/{id}', 'EventsController@get_single_event');
 Route::get('event_form', 'EventsController@display_form');
 Route::post('create', 'EventsController@create');
+Route::delete('delete/{id}', 'EventsController@delete');
 
 Route::get('books', 'BooksController@index')
 Route::get('add_book_form', 'BooksController@book_form');
 Route::post('add_book', 'BooksController@add');
+Route::delete('delete/{id}', 'BooksController@delete');
+
 $route['home/(:any)'] = "page/errorpage";
 $route['(:any)'] = 'page/errorpage';
 //Route::get('read/{any}', 'ActiveTotControllerTwo@errorPage')->where('any', '*');
