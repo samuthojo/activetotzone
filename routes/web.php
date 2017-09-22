@@ -43,7 +43,7 @@ Route::post('cms/change_password_form', 'AdminController@change_password_form');
 Route::post('admin/login', 'AdminController@login');
 Route::get('logout', 'AdminController@logout');
 Route::get('adminstart', 'AdminController@adminstart');
-Route::post('send_email', 'AdminController@send_email');
+Route::post('send_email', 'ActiveTotControllerOne@send_email');
 
 Route::get('events', 'EventsController@get_events');
 Route::get('event/{id}', 'EventsController@get_single_event');
