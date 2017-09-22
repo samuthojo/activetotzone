@@ -59,12 +59,3 @@ Route::get('view_book/{id}', 'BooksController@view_book');
 Route::get('download/{id}', 'BooksController@download');
 Route::delete('delete/{id}', 'BooksController@delete');
 Route::get('edit/{id}', 'BooksController@edit');
-
-//$route['home/(:any)'] = "page/errorpage";
-//$route['(:any)'] = 'page/errorpage';
-//Route::get('read/{any}', 'ActiveTotControllerTwo@errorPage')->where('any', '*');
-//Route::get('watch/(:any)') = "page/watch/errorpage";
-
-//Routes below are a result of running make:auth
-//Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
