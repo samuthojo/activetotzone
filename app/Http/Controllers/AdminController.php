@@ -65,28 +65,25 @@ class AdminController extends Controller {
     }
 
     public function change_password_form(Request $request) {
-        function change_pass($request){
-                $return_status = "";
-                $old_password = $request->input('old_password');
-                $new_password = $request->input('new_password');
-                $confirm_pass = $request->input('confirm_password');
-                $user = Auth::user();
-                if(strcmp($new_password, $confirm_pass) == 0) {
-                  if(Hash::check($new_password, $user->password)) {
-                    $user->password = $new_password;
-                    $user->save();
-                    $return_status = "Password successfully changed";
-                  } else {
-                    $return_status = "Please enter the right old password";
-                  }
-                } else {
-                  $return_status = "New passwords do not match";
-                }
-                return $return_status;
-          }
-        $status = change_pass($request);
-        $feedback = array('status' => $status);
-        echo json_encode($feedback);
+      $params = $request->only('old_password', 'new_password',
+                                          'confirm_password');
+            extract($params, EXTR_PREFIX_ALL, 'from_post');
+            $user = Auth::user();
+            $password = $from_post_old_password;
+            if(Hash::check($password, $user->password)) {
+              if(strcmp($from_post_new_password,
+                              $from_post_confirm_password) == 0) {
+                $user->password = Hash::make($from_post_new_password);
+                $user->save();
+                $status = "Password changed successfully";
+              } else {
+                $status = "Passwords do not match";
+              }
+            } else {
+              $status = "Please enter the right old password";
+            }
+            $feedback = compact('status');
+            return response()->json($feedback);
     }
 
     public function send_email(){
