@@ -10,6 +10,7 @@ class CmsController extends Controller {
   public $active_repo;
 
   public function __construct(ActiveTotRepo $active_repo) {
+    $this->middleware('auth');
     $this->active_repo = $active_repo;
   }
 

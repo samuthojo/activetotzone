@@ -12,6 +12,7 @@ class AdminController extends Controller {
   protected $active_repo;
 
   public function __construct(ActiveTotRepo $repo) {
+    $this->middleware('auth')->except(['admin_index', 'login', ]);
     $this->active_repo = $repo;
   }
 
@@ -55,12 +56,12 @@ class AdminController extends Controller {
     {
         Auth::logout();
 
-        return redirect()->route('admin_index');
+        return redirect()->route('login');
     }
 
     public function change_password() {
         //$data['status'] = "";
-        return view('cms.change_password');
+        return view('cms.change_password')->with('status', '');
     }
 
     public function change_password_form(Request $request) {

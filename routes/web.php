@@ -26,7 +26,7 @@ Route::get('watch/{id}/{title}', 'ActiveTotControllerTwo@watch');
 //Route::get('watch/(:any)', 'ActiveTotControllerTwo@watch');  "page/watch/$1";
 //Route::get('listen/(:any)', 'ActiveTotControllerTwo@listen');
 
-Route::get('admin', 'AdminController@admin_index')->name('admin_index');
+Route::get('admin', 'AdminController@admin_index')->name('login');
 Route::post('cms/replace_image/{form_name}/{id}', 'CmsController@replace_image');
 Route::get('cms/form_add/{form_name}', 'CmsController@form_add');
 Route::post('cms/save_data/{form_name}', 'CmsController@save_data');

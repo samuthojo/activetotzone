@@ -7,6 +7,11 @@ use App\Event;
 
 class EventsController extends Controller {
 
+    public function __construct() {
+      $this->middleware('auth')->only(['display_form', 'create',
+                                        'delete', 'edit', ]);
+    }
+
     public function get_events() {
       $this->update();
       $events = Event::orderBy('date', 'desc')->get();
@@ -42,6 +47,7 @@ class EventsController extends Controller {
       ]);
     }
 
+    //the form to add an event
     public function display_form() {
       return view('events.event_form');
     }
