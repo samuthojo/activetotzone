@@ -20,42 +20,29 @@ class AdminController extends Controller {
       return view('admin_index');
   }
 
-  public function login(Request $request){
-      $user = $request->input('username');
-      $pass = $request->input('password');
-
-      //$credentials = $this->active_repo->load_login_credentials();
-      if (Auth::attempt(['username' => $user, 'password' => $pass])) {
-            // Authentication passed...
-            $session_array = array(
-                'username'=>$user,
-                'password'=>$pass
-            );
-            session(['userData' => $session_array,]);
-            $feedback = array('success' => 'success');
-        } else{
-
-          $feedback = array('success' => 'failure');
+  public function login(Request $request) {
+      $credentials = $request->only('username', 'password');
+      if(Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        $feedback = ['success' => 'success', ];
+      } else {
+        $feedback = ['success' => 'failure', ];
       }
-      echo json_encode($feedback);
-  }
+      return response()->json($feedback);
+    }
 
   public function adminstart(Request $request)
     {
-        if ($request->session()->has('userData')) {
-            $team = $this->active_repo->get_team();
-            return view('cms.main', [
-              'team' => $team,
-            ]);
-        }else {
-            return redirect()->route('admin_index');
-        }
+        $team = $this->active_repo->get_team();
+        return view('cms.main', [
+          'team' => $team,
+        ]);  
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
-
+        $request->session()->invalidate();
         return redirect()->route('login');
     }
 
