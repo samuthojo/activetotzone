@@ -47,7 +47,8 @@
             </li>
 
             <li id="media-li"><a href="{{url('contactUs')}}" class="brand-green-color">contact us</a></li>
-            <li id="media-li"><a href="{{url('calendar')}}" class="brand-blue-color">School Calendar</a></li>
+            {{--<li id="media-li"><a href="{{url('calendar')}}" class="brand-blue-color">School Calendar</a></li>--}}
+            <li id="media-li"><a href="{{url('events')}}" class="brand-blue-color">Events</a></li>
 
         </ul></nav>
 

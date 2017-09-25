@@ -40,6 +40,7 @@
     .blog{
         width: 30.3333%;
         min-height: 550px;
+        min-height: 480px;
         display: table-cell;
         margin:40px 1.5%;
         background-color: white;
@@ -48,9 +49,15 @@
 
     }
 
+    .blog-image{
+        max-height: 200px;
+        overflow: hidden;
+    }
+
     .blog  >img{
         width: 100%;
     }
+
     .blog .post-date{
         font-size: 0.9em;
         line-height: 2;
@@ -87,42 +94,34 @@
 </style>
 
 <section class="ipf-blog">
-
     <h1>Latest Blog Posts</h1>
 
     @if(count($blogs) > 0)
     	@foreach($blogs as $blog)
-         @php
-      	   $image = $blog['image'];
-           $link = $blog['title'];
-      	   $link = preg_replace('/[^A-Za-z0-9\. -]/', '', $link);
-      	   $link = preg_replace('/  */', '-', $link);
-      	   $link = preg_replace('/\\s+/', '-', $link);
-         @endphp
+			@php
+				$image = $blog['image'];
+				$link = $blog['link'];
+				$label = (($loop->index == 0) ? 'brand-green-color' : (($loop->index == 1) ? 'brand-red-color' : 'brand-blue-color'));
+			@endphp
                {{--Display only top three blogs--}}
 
-        	<a href="{{url('read/'.$blog['id'].'/'.$link)}}">
-            		<div class="blog">
-                		<img src="{{url('uploads/' . $image)}}">
-
-                		<h1 class="{{'post-date' . ' ' . (($loop->index == 0) ? 'brand-green-color' :
-                        					(($loop->index == 1) ? 'brand-red-color' : 'brand-blue-color'))
-                        					}}">
-            					{{$blog['date']}}
-            				</h1>
-
-                		<h2 class="post-title">{{$blog['title']}}</h2>
-                		<h3 class="post-summary">{!!substr($blog['description'],0,200)!!} ...</h3>
-               			<h1 class="{{'post-date' . ' ' . (($loop->index == 0) ? 'brand-green-color' :
-                        					(($loop->index == 1) ? 'brand-red-color' : 'brand-blue-color'))
-                        					}}">
-            				read more
-            				</h1>
-      		    	</div>
-      		</a>
-
-    	     @endforeach
-        @endif
+			<a href="{{$link}}">
+				<div class="blog">
+					<div class="blog-image">
+                        <img src="{{asset('uploads/' . $image)}}">
+                    </div>
+					<h1 class="{{'post-date' . ' ' . $label}}">
+						{{$blog['date']}}
+					</h1>
+					<h2 class="post-title">{{$blog['title']}}</h2>
+					<h3 class="post-summary">{!!str_limit($blog['description'],200)!!}</h3>
+					<h1 class="{{'post-date' . ' ' . $label}}">
+						read more
+					</h1>
+				</div>
+			</a>
+		 @endforeach
+	@endif
 
     <h1 style="margin-top: 60px;font-family: 'Qanelas light',sans-serif!important;" >Follow Us On Instagram, <br/> <a href="https://www.instagram.com/activetotszone/" target="_blank">@activetotszone</a></h1>
 </section>
