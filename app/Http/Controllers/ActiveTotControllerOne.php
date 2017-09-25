@@ -56,4 +56,18 @@ class ActiveTotControllerOne extends Controller {
         'title' => "Calendar - Active TOT'S ZONE",
       ]);
     }
+
+    public function send_email(){
+        $to=$_POST["to"];
+        $subject=$_POST["subject"];
+        $message="My name is ".$_POST['userName']." my email is ".$_POST['email']." my phone number is ".$_POST['phonenumber']." I live around  ".$_POST['location'];
+        $sender=$_POST["email"];
+        $headers = 'From: '.$sender. "\r\n" .
+            'Reply-To:'.$sender. "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message,null);
+
+        echo json_encode("success");
+    }
 }

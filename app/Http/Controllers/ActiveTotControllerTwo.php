@@ -36,11 +36,4 @@ class ActiveTotControllerTwo extends Controller {
       ]);
   }
 
-  public function errorPage(){
-        $title = "Page Not Found";
-        return view('level_one.404', [
-          'title' => $title,
-        ]);
-  }
-
 }

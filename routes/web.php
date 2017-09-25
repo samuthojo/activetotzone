@@ -26,7 +26,7 @@ Route::get('watch/{id}/{title}', 'ActiveTotControllerTwo@watch');
 //Route::get('watch/(:any)', 'ActiveTotControllerTwo@watch');  "page/watch/$1";
 //Route::get('listen/(:any)', 'ActiveTotControllerTwo@listen');
 
-Route::get('admin', 'AdminController@admin_index')->name('admin_index');
+Route::get('admin', 'AdminController@admin_index')->name('login');
 Route::post('cms/replace_image/{form_name}/{id}', 'CmsController@replace_image');
 Route::get('cms/form_add/{form_name}', 'CmsController@form_add');
 Route::post('cms/save_data/{form_name}', 'CmsController@save_data');
@@ -43,7 +43,7 @@ Route::post('cms/change_password_form', 'AdminController@change_password_form');
 Route::post('admin/login', 'AdminController@login');
 Route::get('logout', 'AdminController@logout');
 Route::get('adminstart', 'AdminController@adminstart');
-Route::post('send_email', 'AdminController@send_email');
+Route::post('send_email', 'ActiveTotControllerOne@send_email');
 
 Route::get('events', 'EventsController@get_events');
 Route::get('event/{id}', 'EventsController@get_single_event');
@@ -59,12 +59,3 @@ Route::get('view_book/{id}', 'BooksController@view_book');
 Route::get('download/{id}', 'BooksController@download');
 Route::delete('delete/{id}', 'BooksController@delete');
 Route::get('edit/{id}', 'BooksController@edit');
-
-//$route['home/(:any)'] = "page/errorpage";
-//$route['(:any)'] = 'page/errorpage';
-//Route::get('read/{any}', 'ActiveTotControllerTwo@errorPage')->where('any', '*');
-//Route::get('watch/(:any)') = "page/watch/errorpage";
-
-//Routes below are a result of running make:auth
-//Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');

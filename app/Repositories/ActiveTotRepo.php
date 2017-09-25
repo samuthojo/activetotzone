@@ -17,12 +17,6 @@ class ActiveTotRepo {
       return $converted_time;
   }
 
-  public function load_login_credentials(){
-      $credentials = Login::first(['username', 'password',]);
-      return $credentials;
-  }
-
-
   public function save_data($request, $form_name, $filename){
       if($form_name == "team") {
         Team::create([

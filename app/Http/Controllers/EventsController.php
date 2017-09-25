@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use Image;
 
 class EventsController extends Controller {
+
+    public function __construct() {
+      $this->middleware('auth')->only(['display_form', 'create',
+                                        'delete', 'edit', ]);
+    }
 
     public function get_events() {
       $this->update();
@@ -42,6 +48,7 @@ class EventsController extends Controller {
       ]);
     }
 
+    //the form to add an event
     public function display_form() {
       return view('events.event_form');
     }

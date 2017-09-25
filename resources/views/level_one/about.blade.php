@@ -215,8 +215,7 @@ Time: 10:44 AM -->
         var location= $("#location").val();
         var subject="Hello Active TOT's";
 //        var budget=$(".myform").find("input[type='radio']:checked");
-        var to="samuthojo@gmail.com";
-//        var to="graysonjulius@gmail.com";
+       var to="graysonjulius@gmail.com";
 
         if(validateEmail($.trim(email.val()))){
             $(".ipf-button").html('<i class="fa fa-spinner" aria-hidden="true" style="line-height: 2"></i>')
@@ -229,7 +228,7 @@ Time: 10:44 AM -->
                 'subject': $.trim(subject)
 
             };
-            var url='index.php/send_email/';
+            var url='send_email';
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -252,7 +251,7 @@ Time: 10:44 AM -->
                     username.val("");
                     phonenumber.val("");
                     phonenumber.val("");
-                    location.val("");
+                    // location.val("");
 
 
                 }

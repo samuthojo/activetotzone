@@ -7,7 +7,10 @@ use App\Book;
 
 class BooksController extends Controller
 {
-
+    public function __construct() {
+      $this->middleware('auth')->only(['save', 'book_form',
+                                              'delete', 'edit', ]);
+    }
     public function index() {
       $books = Book::orderBy('id', 'desc')->get();
       return view('books.index', [
