@@ -7,6 +7,7 @@
   <br><br><br>
   {{--@include('level_one.numbers')--}}
   @include('level_one.classes')
+  @include('level_one.testimonials')
   @include('level_one.blogs')
   @include('level_one.instagram')
 @endsection

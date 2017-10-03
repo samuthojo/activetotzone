@@ -10,6 +10,10 @@
         height: 40px;
         background-color: white;
     }
+    nav ul li {
+        float: none;
+        flex: 1;
+    }
     nav[role="off-canvas"] a {
         font-size:1em;
         line-height:2.5;
@@ -30,7 +34,7 @@
 
         <label for="drop" class="toggle">&#9776;</label>
         <input type="checkbox" id="drop" />
-        <ul class="menu">
+        <ul class="menu layout justifie">
             <li id="home-li"><a href="{{url('home')}} ">home</a></li>
             <li id="blog-li"><a href="{{url('about_us')}}" class="brand-blue-color">about us</a></li>
             <li id="governance-li"><a href="{{url('blogs')}}" class="brand-red-color">blogs</a></li>
@@ -49,6 +53,7 @@
             <li id="media-li"><a href="{{url('contactUs')}}" class="brand-green-color">contact us</a></li>
             {{--<li id="media-li"><a href="{{url('calendar')}}" class="brand-blue-color">School Calendar</a></li>--}}
             <li id="media-li"><a href="{{url('events')}}" class="brand-blue-color">Events</a></li>
+            <li id="media-li"><a href="{{url('books')}}" class="brand-blue-color">Books</a></li>
 
         </ul></nav>
 

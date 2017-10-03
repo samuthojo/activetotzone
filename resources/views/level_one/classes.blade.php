@@ -9,7 +9,7 @@
         width: 100%;
         min-height: 500px;
         display:table;
-        margin-bottom: 100px;
+        margin-bottom: 20px;
     }
 
     .ipf-classes >h1{
@@ -107,88 +107,88 @@
 
 <section class="ipf-classes">
 
-        <h1 class="brand-blue-color">Our Classes</h1>
+    <h1 class="brand-blue-color">Our Classes</h1>
 
-        <div>
+    <div>
 
-            <div class="room">
-                <div class="room-image">
+        <div class="room">
+            <div class="room-image">
 
-                    <img src="<?=url('assets/images/class1.jpg')?>" alt="Active TOTS Image">
+                <img src="<?=url('assets/images/class1.jpg')?>" alt="Active TOTS Image">
 
+            </div>
+
+            <h1 class="brand-blue-color">Beetles Class</h1>
+            <div class="room-footer">
+                <div>
+                    <h1>AGE</h1>
+                    <h2 class="brand-blue-color">2</h2>
                 </div>
-
-                <h1 class="brand-blue-color">Beetles Class</h1>
-                <div class="room-footer">
-                    <div>
-                        <h1>AGE</h1>
-                        <h2 class="brand-blue-color">2</h2>
-                    </div>
-                    <div>
-                        <h1 >CLASS SIZE</h1>
-                        <h2 class="brand-blue-color">18</h2>
-                    </div>
+                <div>
+                    <h1 >CLASS SIZE</h1>
+                    <h2 class="brand-blue-color">18</h2>
                 </div>
             </div>
-            <div class="room">
-                <div class="room-image">
+        </div>
+        <div class="room">
+            <div class="room-image">
 
-                    <img src="<?=url('assets/images/class2.jpg')?>" alt="Active TOTS Image">
+                <img src="<?=url('assets/images/class2.jpg')?>" alt="Active TOTS Image">
 
+            </div>
+
+            <h1 class="brand-red-color">ladybug Class</h1>
+            <div class="room-footer">
+                <div>
+                    <h1>AGE</h1>
+                    <h2 class="brand-red-color">3</h2>
                 </div>
-
-                    <h1 class="brand-red-color">ladybug Class</h1>
-                    <div class="room-footer">
-                        <div>
-                            <h1>AGE</h1>
-                            <h2 class="brand-red-color">3</h2>
-                        </div>
-                        <div>
-                            <h1 >CLASS SIZE</h1>
-                            <h2 class="brand-red-color">15</h2>
-                        </div>
-                    </div>
+                <div>
+                    <h1 >CLASS SIZE</h1>
+                    <h2 class="brand-red-color">15</h2>
                 </div>
+            </div>
+        </div>
 
-            <div class="room">
-                <div class="room-image">
+        <div class="room">
+            <div class="room-image">
 
-                    <img src="<?=url('assets/images/class3.jpg')?>" alt="Active TOTS Image">
+                <img src="<?=url('assets/images/class3.jpg')?>" alt="Active TOTS Image">
 
+            </div>
+            <h1 class="brand-green-color">butterfly Class</h1>
+            <div class="room-footer">
+                <div>
+                    <h1>AGE</h1>
+                    <h2 class="brand-green-color">4</h2>
                 </div>
-                    <h1 class="brand-green-color">butterfly Class</h1>
-                    <div class="room-footer">
-                        <div>
-                            <h1>AGE</h1>
-                            <h2 class="brand-green-color">4</h2>
-                        </div>
-                        <div>
-                            <h1 >CLASS SIZE</h1>
-                            <h2 class="brand-green-color">20</h2>
-                        </div>
-                    </div>
+                <div>
+                    <h1 >CLASS SIZE</h1>
+                    <h2 class="brand-green-color">20</h2>
                 </div>
-            <div class="room">
-                <div class="room-image">
+            </div>
+        </div>
+        <div class="room">
+            <div class="room-image">
 
-                    <img src="<?=url('assets/images/class4.jpg')?>" alt="Active TOTS Image">
+                <img src="<?=url('assets/images/class4.jpg')?>" alt="Active TOTS Image">
 
+            </div>
+
+            <h1 class="brand-purple-color">busy bee Class</h1>
+            <div class="room-footer">
+                <div>
+                    <h1>AGE</h1>
+                    <h2 class="brand-purple-color">5</h2>
                 </div>
-
-                    <h1 class="brand-purple-color">busy bee Class</h1>
-                    <div class="room-footer">
-                        <div>
-                            <h1>AGE</h1>
-                            <h2 class="brand-purple-color">5</h2>
-                        </div>
-                        <div>
-                            <h1 >CLASS SIZE</h1>
-                            <h2 class="brand-purple-color">19</h2>
-                        </div>
-                    </div>
-
+                <div>
+                    <h1 >CLASS SIZE</h1>
+                    <h2 class="brand-purple-color">19</h2>
+                </div>
             </div>
 
         </div>
+
+    </div>
 
 </section>
