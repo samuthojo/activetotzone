@@ -10,6 +10,21 @@ function menu_links(header){
     }else if(header == 'password'){
         link="cms/change_password";
     }
+    else if(header == 'book'){
+        link="cms/books";
+    }
+    else if(header == 'worksheet'){
+        link="cms/worksheets";
+    }
+    else if(header == 'testimonial'){
+        link="cms/change_password";
+    }
+    else if(header == 'slideshow'){
+        link="cms/slideshows";
+    }
+    else if(header == 'event'){
+        link="cms/events";
+    }
     $.ajax({
         url: link,
         dataType:'html',

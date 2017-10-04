@@ -80,6 +80,12 @@
                     <li><a href="javascript:menu_links('blog');">Blogs</a></li>
                     <li><a href="javascript:menu_links('video');">Videos</a></li>
                     <li><a href="javascript:menu_links('team');">Our team</a></li>
+                    <li><a href="javascript:menu_links('book');">Books</a></li>
+                    <li><a href="javascript:menu_links('worksheet');">Worksheets</a></li>
+                    <li><a href="javascript:menu_links('testimonial');">Testimonials</a></li>
+                    <li><a href="javascript:menu_links('important_date');">Important dates</a></li>
+                    <li><a href="javascript:menu_links('slideshow');">Slideshow pictures</a></li>
+                    <li><a href="javascript:menu_links('event');">Events</a></li>
                     <li><a href="javascript:menu_links('password');">Change password</a></li>
                 </ul>
             </li>

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Event;
+use Carbon\Carbon;
 
 class EventsTableSeeder extends Seeder
 {
@@ -16,12 +17,13 @@ class EventsTableSeeder extends Seeder
 
       for ($i=1; $i < 19; $i++) {
           $event = [
-              'name' => $faker->sentence($faker->numberBetween(3, 5)),
+              'title' => $faker->sentence($faker->numberBetween(3, 5)),
               'description' => $faker->realText(120),
-              'picture' => "$i.jpg",
-              'venue' => $faker->city(),
+              'picture' => "1.jpg",
+              'location' => $faker->city(),
               'link' => $faker->url(),
               'date' => $faker->dateTime(),
+              'time' => '7:30 AM',
           ];
           Event::create($event);
       }

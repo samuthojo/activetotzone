@@ -18,9 +18,10 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->timestamp('date')->nullable();//when the event is to take place
-            $table->time('time'); //the time the event is to start
+            $table->string('time', 10);
             $table->string('venue');
-            $table->string('link'); //link to photo gallery if event has passed
+            //link to photo gallery if event has passed
+            $table->string('link')->default('www.facebook.com/activetotszone/photos/?ref=page_internal');
             $table->softDeletes(); //Supports soft-deleting of models
             $table->timestamps();
         });

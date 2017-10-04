@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 
-class BooksController extends Controller
+class Books extends Controller
 {
     public function __construct() {
       $this->middleware('auth')->only(['save', 'book_form',

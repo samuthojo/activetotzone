@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ActiveTotRepo;
 
-class CmsController extends Controller {
+use App\SlideShow;
+
+class Cms extends Controller {
 
   public $active_repo;
 
@@ -121,7 +123,6 @@ class CmsController extends Controller {
                     if($this->check_file_existence($file_name)){
                         $this->active_repo->save_data($request, $form_name,$file_name);
                     }
-                  // move_uploaded_file($_FILES['file']['tmp_name'],"uploads/".$file_name);
                 }else{
                     echo $file_errors;
                 }
@@ -224,5 +225,33 @@ class CmsController extends Controller {
         }
     }
 
+    public function slideshows() {
+      $slideshows = SlideShow::orderBy('id', 'desc')->take(4);
+      return view('slideshow', compact('slideshows'));
+    }
+
+    public function store(Request $request) {
+      $file = "";
+      if($request->hasFile('slideshow')) {
+        $file = $request->file('slideshow');
+        if($file->isValid()) {
+          $file_name = $file->getClientOriginalName();
+          $location = 'uploads/slideshows/' . $file_name;
+          move_uploaded_file($file->path(), $location);
+          save_thumb($file_name);
+          SlideShow::firstOrCreate(['slideshow' => $file_name, ]);
+        }
+      }
+    }
+
+    private function save_thumb($file_name) {
+      $base_location = 'uploads/slideshows/';
+      $thumb_location = $base_location . 'thumbs/' . $file_name;
+      $image = Image::make($base_location . '/' . $file_name);
+      $image = $image->resize(300, null, function($constraint) {
+                  $constraint->aspectRatio();
+              });
+      $image->save($thumb_location, 20);
+    }
 
 }

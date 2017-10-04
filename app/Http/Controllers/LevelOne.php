@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ActiveTotRepo;
+use App\Event;
 
-class ActiveTotControllerOne extends Controller {
+class LevelOne extends Controller {
 
     protected $active_repo;
 
@@ -56,6 +57,35 @@ class ActiveTotControllerOne extends Controller {
         'title' => "Calendar - Active TOT'S ZONE",
       ]);
     }
+
+    public function events() {
+      $this->update();
+      $events = Event::orderBy('date', 'desc')->get();
+      // $events->map(function($event){
+      //   return {
+      //     status =
+      //   }
+      // });
+      return view('level_one.events', [
+        'events' => $events,
+      ]);
+    }
+
+    /**
+     * Check whether the event is still active, if not set status = false
+     * @param status
+     * @return void
+     */
+    private function update() {
+      $events = Event::where('status', true)->get();
+      foreach($events as $event) {
+        if($event->date < date('Y-m-d')) {
+          $event->status = false; //Event has already passed
+          $event->save();
+        }
+      }
+    }
+
 
     public function send_email(){
         $to=$_POST["to"];

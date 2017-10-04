@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ActiveTotRepo;
 
-class ActiveTotControllerTwo extends Controller {
+class LevelTwo extends Controller {
 
   public $active_repo;
 

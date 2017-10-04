@@ -7,7 +7,7 @@ use App\Repositories\ActiveTotRepo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller {
+class Admin extends Controller {
 
   protected $active_repo;
 

@@ -14,7 +14,7 @@ class Event extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'date',];
+    protected $dates = ['deleted_at',];
 
     protected $guarded = ['id',];
 
@@ -24,5 +24,9 @@ class Event extends Model
     * @var string
     */
    protected $dateFormat = 'Y-m-d';
+
+   public function getDateAttribute($value) {
+     return Carbon::parse($value)->format("j M \\'y");
+   }
 
 }

@@ -10,8 +10,14 @@
           $id = 'image_closer' . $details['id'];
           @endphp
         <section id="team_details" style="height: 300px; width: 100%; padding-top: 10px;">
-            <div id="{{$details['id']}}" onmouseover="show_team_image_closer(id)" id="farmer_image" style="position: relative; border: solid 3px #d3d3d3; float: left; width: 40%; height: 300px; background-image: url('{{url("uploads/" . $details['image'])}}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-                <i id="{{$id}}" onclick="close_team_image({{$details['id']}})" class="fa fa-times fa-2x closer" style="color: darkred; display: block; position: absolute; left: 45%; bottom: 45%; cursor: pointer;"></i>
+            <div id="{{$details['id']}}" onmouseover="show_team_image_closer(id)"
+              id="farmer_image" style="position: relative; border: solid 3px #d3d3d3;
+              float: left; width: 40%; height: 300px;
+              background-image: url('{{url("uploads/" . $details['image'])}}');
+              background-size: cover; background-position: center; background-repeat: no-repeat;">
+              <i id="{{$id}}" onclick="close_team_image({{$details['id']}})"
+                class="fa fa-times fa-2x closer" style="color: darkred; display: block;
+                position: absolute; left: 45%; bottom: 45%; cursor: pointer;"></i>
             </div>
             <div id="team_description" style="border: solid 3px #d3d3d3; float: left; margin-left: 0; height: 300px; width: 40%; position: relative;">
                 <div style="padding: 10px;">

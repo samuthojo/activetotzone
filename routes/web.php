@@ -11,51 +11,56 @@
 |
 */
 
-Route::get('/', 'ActiveTotControllerOne@index');
-Route::get('/home', 'ActiveTotControllerOne@index');
-Route::get('/about_us', 'ActiveTotControllerOne@about_us');
-Route::get('/blogs', 'ActiveTotControllerOne@blog');
-Route::get('/video/{category}', 'ActiveTotControllerOne@video');
-Route::get('/contactUs', 'ActiveTotControllerOne@contactUs');
-Route::get('/calendar', 'ActiveTotControllerOne@calendar');
+Route::get('/', 'LevelOne@index');
+Route::get('/home', 'LevelOne@index');
+Route::get('/about_us', 'LevelOne@about_us');
+Route::get('/blogs', 'LevelOne@blog');
+Route::get('/video/{category}', 'LevelOne@video');
+Route::get('/contactUs', 'LevelOne@contactUs');
+Route::get('/calendar', 'LevelOne@calendar');
 
-Route::get('read/{blog_id}/{blog_title}', 'ActiveTotControllerTwo@read');
+Route::get('read/{blog_id}/{blog_title}', 'LevelTwo@read');
 
-Route::get('watch/{id}/{title}', 'ActiveTotControllerTwo@watch');
+Route::get('watch/{id}/{title}', 'LevelTwo@watch');
 
-//Route::get('watch/(:any)', 'ActiveTotControllerTwo@watch');  "page/watch/$1";
-//Route::get('listen/(:any)', 'ActiveTotControllerTwo@listen');
+Route::get('admin', 'Admin@admin_index')->name('login');
+Route::post('cms/replace_image/{form_name}/{id}', 'Cms@replace_image');
+Route::get('cms/form_add/{form_name}', 'Cms@form_add');
+Route::post('cms/save_data/{form_name}', 'Cms@save_data');
+Route::get('cms/form_edit/{form_name}/{id}', 'Cms@form_edit');
+Route::post('cms/save_form_changes/{form_name}', 'Cms@save_form_changes');
+Route::delete('cms/form_delete/{form_name}/{id}', 'Cms@form_delete');
+Route::get('cms/team', 'Cms@team');
+Route::get('cms/video', 'Cms@cms_video');
+Route::get('cms/blog', 'Cms@cms_blog');
+Route::get('cms/blog_details/{blog_id}', 'Cms@blog_details');
+Route::get('cms/change_password', 'Admin@change_password');
+Route::post('cms/change_password_form', 'Admin@change_password_form');
 
-Route::get('admin', 'AdminController@admin_index')->name('login');
-Route::post('cms/replace_image/{form_name}/{id}', 'CmsController@replace_image');
-Route::get('cms/form_add/{form_name}', 'CmsController@form_add');
-Route::post('cms/save_data/{form_name}', 'CmsController@save_data');
-Route::get('cms/form_edit/{form_name}/{id}', 'CmsController@form_edit');
-Route::post('cms/save_form_changes/{form_name}', 'CmsController@save_form_changes');
-Route::delete('cms/form_delete/{form_name}/{id}', 'CmsController@form_delete');
-Route::get('cms/team', 'CmsController@team');
-Route::get('cms/video', 'CmsController@cms_video');
-Route::get('cms/blog', 'CmsController@cms_blog');
-Route::get('cms/blog_details/{blog_id}', 'CmsController@blog_details');
-Route::get('cms/change_password', 'AdminController@change_password');
-Route::post('cms/change_password_form', 'AdminController@change_password_form');
+Route::post('admin/login', 'Admin@login');
+Route::get('logout', 'Admin@logout');
+Route::get('adminstart', 'Admin@adminstart');
+Route::post('send_email', 'LevelOne@send_email');
 
-Route::post('admin/login', 'AdminController@login');
-Route::get('logout', 'AdminController@logout');
-Route::get('adminstart', 'AdminController@adminstart');
-Route::post('send_email', 'ActiveTotControllerOne@send_email');
+Route::get('events', 'LevelOne@events');
 
-Route::get('events', 'EventsController@get_events');
-Route::get('event/{id}', 'EventsController@get_single_event');
-Route::get('event_form', 'EventsController@display_form');
-Route::post('create', 'EventsController@create');
-Route::delete('delete/{id}', 'EventsController@delete');
-Route::get('edit/{id}', 'EventsController@edit');
+Route::prefix('cms')->group(function() {
 
-Route::get('books', 'BooksController@index');
-Route::get('add_book_form', 'BooksController@book_form');
-Route::post('save_book', 'BooksController@save');
-Route::get('view_book/{id}', 'BooksController@view_book');
-Route::get('download/{id}', 'BooksController@download');
-Route::delete('delete/{id}', 'BooksController@delete');
-Route::get('edit/{id}', 'BooksController@edit');
+  Route::get('event/{id}', 'Events@get_single_event');
+  Route::get('event_form', 'Events@display_form');
+  Route::post('create_event', 'Events@create');
+  Route::delete('delete/{id}', 'Events@delete');
+  Route::get('edit/{id}', 'Events@edit');
+
+  Route::get('books', 'Books@index');
+  Route::get('add_book_form', 'Books@book_form');
+  Route::post('save_book', 'Books@save');
+  Route::get('view_book/{id}', 'Books@view_book');
+  Route::get('download/{id}', 'Books@download');
+  Route::delete('delete/{id}', 'Books@delete');
+  Route::get('edit/{id}', 'Books@edit');
+
+  Route::get('slideshows', 'Cms@slideshows');
+  Route::post('slideshows/create', 'Cms@store');
+
+});

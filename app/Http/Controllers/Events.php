@@ -3,54 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Event;
 use Image;
 
-class EventsController extends Controller {
+class Events extends Controller {
 
     public function __construct() {
-      $this->middleware('auth')->only(['display_form', 'create',
-                                        'delete', 'edit', ]);
+      $this->middleware('auth')->except(['get_events', 'update', ]);
     }
 
-    public function get_events() {
-      $this->update();
-      $events = Event::orderBy('date', 'desc')->get();
-      // $events->map(function($event){
-      //   return {
-      //     status =
-      //   }
-      // });
-      return view('events.index', [
-        'events' => $events,
-      ]);
-    }
-
-    /**
-     * Check whether the event is still active, if not set status = false
-     * @param status
-     * @return void
-     */
-    private function update() {
-      $events = Event::where('status', true)->get();
-      foreach($events as $event) {
-        if($event->date < date('Y-m-d')) {
-          $event->status = false; //Event has already passed
-          $event->save();
-        }
-      }
-    }
 
     public function get_single_event($id) {
       $event = Event::find($id);
-      return view('events.event', [
+      return view('cms.event_details', [
         'event' => $event,
       ]);
     }
 
     //the form to add an event
     public function display_form() {
-      return view('events.event_form');
+      return view('cms.event_form');
     }
 
     //save the event
@@ -84,28 +57,27 @@ class EventsController extends Controller {
 
         Event::create($event);
 
-        $events = Event::orderBy('date', 'desc')->get();
-        return view('events.index', [
-          'events' => $events,
-        ]);
+        return $this->cms_events();
     }
 
     //delete the event
     public function delete($id) {
       $event = Event::find($id);
       $event->delete(); //The event will be softDeleted
-      $events = Event::orderBy('date', 'desc')->get();
-      return view('events.index', [
-        'events' => $events,
-      ]);
+      return $this->cms_events();
     }
 
     //edit the event
     public function edit($id) {
       $event = Event::find($id);
-      return view('events.edit_event', [
+      return view('cms.edit_event', [
         'event' => $event,
       ]);
+    }
+
+    public function cms_events() {
+      $events = Event::orderBy('date', 'desc')->get();
+      return view('cms.event', compact('events'));
     }
 
 }
