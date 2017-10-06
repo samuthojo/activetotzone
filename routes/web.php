@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'LevelOne@index');
+
 Route::get('/home', 'LevelOne@index');
 Route::get('/about_us', 'LevelOne@about_us');
 Route::get('/blogs', 'LevelOne@blog');
@@ -44,23 +45,23 @@ Route::post('send_email', 'LevelOne@send_email');
 
 Route::get('events', 'LevelOne@events');
 
+Route::get('get_books', 'Books@index');
+
 Route::prefix('cms')->group(function() {
 
-  Route::get('event/{id}', 'Events@get_single_event');
-  Route::get('event_form', 'Events@display_form');
-  Route::post('create_event', 'Events@create');
-  Route::delete('delete/{id}', 'Events@delete');
-  Route::get('edit/{id}', 'Events@edit');
+  Route::get('events', 'Cms@events');
+  Route::get('event_details/{event}', 'Cms@event_details');
 
-  Route::get('books', 'Books@index');
-  Route::get('add_book_form', 'Books@book_form');
-  Route::post('save_book', 'Books@save');
-  Route::get('view_book/{id}', 'Books@view_book');
-  Route::get('download/{id}', 'Books@download');
-  Route::delete('delete/{id}', 'Books@delete');
-  Route::get('edit/{id}', 'Books@edit');
+  Route::get('books', 'Books@books');
+  Route::get('book_details/{book}', 'Books@book_details');
 
   Route::get('slideshows', 'Cms@slideshows');
-  Route::post('slideshows/create', 'Cms@store');
+  Route::post('slideshows/create', 'Cms@storeSlide');
+  Route::post('slideshows/updateSlide/{id}', 'Cms@updateSlide');
 
+  Route::get('important_dates', 'Cms@important_dates');
+
+  Route::get('worksheets', 'Cms@worksheets');
+
+  Route::get('testimonials', 'Cms@testimonials');
 });

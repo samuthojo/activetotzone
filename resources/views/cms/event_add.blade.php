@@ -1,3 +1,10 @@
+<link  href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
+<script src="{{ asset('js/datepicker.js') }}"></script>
+<script>
+  $('[data-toggle="datepicker"]').datepicker({
+    format: 'dd-mm-yyyy'
+  });
+</script>
 <div class="mws-panel grid_5">
     <div class="mws-panel-header">
         <span style="float: left;">Add an Event</span>
@@ -11,13 +18,15 @@
                 <input type="text" class="large" id="link" placeholder="Link" name="link">
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
-                <input type="text" class="large" id="date" placeholder="Date e.g. 2,june 2016" name="date">
+                <input type="text" data-toggle="datepicker"
+                  class="large" id="date" placeholder="Date e.g. 2,june 2016" name="date">
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input type="text" class="large" id="time" placeholder="Time e.g. 7:30AM" name="time">
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <select id="location" name="location">
+                    <option disabled selected value="">choose location</option>
                     <option value="kinyerezi">Kinyerezi</option>
                     <option value="mikocheni">Mikocheni</option>
                 </select>

@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use App\Repositories\ActiveTotRepo;
 
 use App\SlideShow;
+use App\Event;
+use App\Book;
+use App\WorkSheet;
+use App\Testimonial;
+use App\ImportantDate;
+
+use Image;
 
 class Cms extends Controller {
 
@@ -23,6 +30,18 @@ class Cms extends Controller {
           return view('cms.blog_add');
       }else if(strcasecmp($form_name, "video") == 0){
           return view('cms.video_add');
+      }else if(strcasecmp($form_name, "book") == 0){
+          return view('cms.book_add');
+      }else if(strcasecmp($form_name, "event") == 0){
+          return view('cms.event_add');
+      }else if(strcasecmp($form_name, "important_date") == 0){
+          return view('cms.important_date_add');
+      }
+      else if(strcasecmp($form_name, "worksheet") == 0){
+          return view('cms.worksheet_add');
+      }
+      else if(strcasecmp($form_name, "testimonial") == 0){
+          return view('cms.testimonial_add');
       }
   }
 
@@ -69,6 +88,25 @@ class Cms extends Controller {
             'edit_details' => $edit_details,
           ]);
       }
+      else if(strcasecmp($form_name, "book") == 0){
+          return view("cms.book_edit",[
+            'edit_details' => $edit_details,
+          ]);
+      }
+      else if(strcasecmp($form_name, "event") == 0){
+          return view("cms.event_edit",[
+            'edit_details' => $edit_details,
+          ]);
+      }
+      else if(strcasecmp($form_name, 'important_date') == 0) {
+        return view('cms.important_date_edit', compact('edit_details'));
+      }
+      else if(strcasecmp($form_name, 'worksheet') == 0) {
+        return view('cms.worksheet_edit', compact('edit_details'));
+      }
+      else if(strcasecmp($form_name, 'testimonial') == 0) {
+        return view('cms.testimonial_edit', compact('edit_details'));
+      }
     }
 
     public function save_form_changes(Request $request, $form_name){
@@ -89,6 +127,22 @@ class Cms extends Controller {
               'blogs' => $blogs,
             ]);
         }
+        else if(strcasecmp($form_name, 'important_date') == 0) {
+          return $this->important_dates();
+        }
+        else if(strcasecmp($form_name, 'worksheet') == 0) {
+          return $this->worksheets();
+        }
+        else if(strcasecmp($form_name, 'testimonial') == 0) {
+          return $this->testimonials();
+        }
+        else if(strcasecmp($form_name, 'event') == 0) {
+          return $this->events();
+        }
+        else if(strcasecmp($form_name, 'book') == 0) {
+          $books = Book::orderBy('id', 'desc')->get();
+          return view('cms.book', compact('books'));
+        }
     }
 
     public function form_delete($form_name,$id){
@@ -108,6 +162,24 @@ class Cms extends Controller {
             return view('cms.blog', [
               'blogs' => $blogs,
             ]);
+        }else if(strcasecmp($form_name, "book") == 0){
+            $books = Book::orderBy('id', 'desc')->get();
+            return view('cms.book', compact('books'));
+        }
+        else if(strcasecmp($form_name, 'event') == 0) {
+          return $this->events();
+        }
+        else if(strcasecmp($form_name, "slideshow") == 0) {
+            return $this->slideshows();
+        }
+        else if(strcasecmp($form_name, 'testimonial') == 0) {
+          return $this->testimonials();
+        }
+        else if(strcasecmp($form_name, "worksheet") == 0) {
+            return $this->worksheets();
+        }
+        else if(strcasecmp($form_name, "important_date") == 0) {
+            return $this->important_dates();
         }
     }
 
@@ -179,6 +251,72 @@ class Cms extends Controller {
             return view('cms.blog', [
               'blogs' => $blogs,
             ]);
+        } else if(strcasecmp($form_name, 'book') == 0) {
+            extract($request->all());
+            $image = "";
+            $cover_image = "";
+            $book = "";
+            $book_url = "";
+            if($request->hasFile('cover_image')) {
+              $image = $request->file('cover_image');
+              if($image->isValid()) {
+                $cover_image = $image->getClientOriginalName();
+                $image->move('uploads/book_covers', $cover_image);
+                $this->save_thumb('cover', $cover_image);
+              } else {
+                echo 'The upload was not successful, please retry';
+              }
+            }
+            if($request->hasFile('book_url')) {
+              $book = $request->file('book_url');
+              if($book->isValid()) {
+                $book_url = $book->getClientOriginalName();
+                $book->move('uploads/books', $book_url);
+              } else {
+                echo 'The upload was not successful, please retry';
+              }
+            }
+            Book::create(compact('title', 'author', 'date_published',
+                                 'description', 'cover_image', 'book_url'));
+            $books = Book::orderBy('id', 'desc')->get();
+            return view('cms.book', compact('books'));
+        }
+        else if(strcasecmp($form_name, 'event') == 0) {
+          extract($request->all());
+          $picture = "";
+          $file = "";
+          if($request->hasFile('file')) {
+            $file = $request->file('file');
+            if($file->isValid()) {
+              $picture = $file->getClientOriginalName();
+              $file->move('uploads/events', $picture);
+              $this->save_thumb('event', $picture);
+            }
+          }
+          Event::create(compact('title', 'date', 'link', 'description',
+                                'location', 'time', 'picture'));
+          return $this->events();
+        }
+        else if(strcasecmp($form_name, 'important_date') == 0) {
+          ImportantDate::create($request->all());
+          return $this->important_dates();
+        }
+        else if(strcasecmp($form_name, 'worksheet') == 0) {
+          extract($request->all());
+          $worksheet = "";
+          if($request->hasFile('worksheet')) {
+            $file = $request->file('worksheet');
+            if($file->isValid()) {
+              $worksheet = $file->getClientOriginalName();
+              $file->move('uploads/worksheets', $worksheet);
+            }
+          }
+          WorkSheet::create(compact('type', 'worksheet'));
+          return $this->worksheets();
+        }
+        else if(strcasecmp($form_name, 'testimonial') == 0) {
+          Testimonial::create($request->all());
+          return $this->testimonials();
         }
     }
 
@@ -226,11 +364,11 @@ class Cms extends Controller {
     }
 
     public function slideshows() {
-      $slideshows = SlideShow::orderBy('id', 'desc')->take(4);
+      $slideshows = SlideShow::orderBy('id', 'asc')->get();
       return view('slideshow', compact('slideshows'));
     }
 
-    public function store(Request $request) {
+    public function storeSlide(Request $request) {
       $file = "";
       if($request->hasFile('slideshow')) {
         $file = $request->file('slideshow');
@@ -238,20 +376,77 @@ class Cms extends Controller {
           $file_name = $file->getClientOriginalName();
           $location = 'uploads/slideshows/' . $file_name;
           move_uploaded_file($file->path(), $location);
-          save_thumb($file_name);
-          SlideShow::firstOrCreate(['slideshow' => $file_name, ]);
+          $this->save_thumb('slideshow', $file_name);
+          SlideShow::create(['slideshow' => $file_name, ]);
         }
       }
     }
 
-    private function save_thumb($file_name) {
-      $base_location = 'uploads/slideshows/';
-      $thumb_location = $base_location . 'thumbs/' . $file_name;
-      $image = Image::make($base_location . '/' . $file_name);
-      $image = $image->resize(300, null, function($constraint) {
-                  $constraint->aspectRatio();
-              });
-      $image->save($thumb_location, 20);
+    public function updateSlide(Request $request, $id) {
+      $file = "";
+      if($request->hasFile('slideshow')) {
+        $file = $request->file('slideshow');
+        if($file->isValid()) {
+          $file_name = $file->getClientOriginalName();
+          $location = 'uploads/slideshows/' . $file_name;
+          move_uploaded_file($file->path(), $location);
+          $this->save_thumb('slideshow', $file_name);
+          SlideShow::where('id', $id)->update(['slideshow' => $file_name, ]);
+        }
+      }
     }
 
+    private function save_thumb($type, $file_name) {
+      if(strcasecmp($type, 'slideshow') == 0) {
+        $base_location = 'uploads/slideshows/';
+        $thumb_location = public_path($base_location . 'thumbs/' . $file_name);
+        $image = Image::make($base_location . $file_name);
+        $image = $image->resize(300, null, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+        $image->save($thumb_location);
+      }
+      else if(strcasecmp($type, 'cover') == 0) {
+        $base_location = 'uploads/book_covers/';
+        $thumb_location = public_path($base_location . 'thumbs/' . $file_name);
+        $image = Image::make($base_location . $file_name);
+        $image = $image->resize(300, null, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+        $image->save($thumb_location);
+      }
+      else if(strcasecmp($type, 'event') == 0) {
+        $base_location = 'uploads/events/';
+        $thumb_location = public_path($base_location . 'thumbs/' . $file_name);
+        $image = Image::make($base_location . $file_name);
+        $image = $image->resize(300, null, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+        $image->save($thumb_location);
+      }
+    }
+
+    public function events() {
+      $events = Event::orderBy('id', 'desc')->get();
+      return view('cms.event', compact('events'));
+    }
+
+    public function event_details(Event $event) {
+      return view('cms.event_details', compact('event'));
+    }
+
+    public function important_dates() {
+      $important_dates = ImportantDate::orderBy('id', 'desc')->get();
+      return view('cms.important_date', compact('important_dates'));
+    }
+
+    public function worksheets() {
+      $worksheets = WorkSheet::orderBy('id', 'desc')->get();
+      return view('cms.worksheet', compact('worksheets'));
+    }
+
+    public function testimonials() {
+      $testimonials = Testimonial::orderBy('id', 'desc')->get();
+      return view('cms.testimonial', compact('testimonials'));
+    }
 }

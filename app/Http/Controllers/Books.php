@@ -8,9 +8,9 @@ use App\Book;
 class Books extends Controller
 {
     public function __construct() {
-      $this->middleware('auth')->only(['save', 'book_form',
-                                              'delete', 'edit', ]);
+      //$this->middleware('auth')->except('index');
     }
+
     public function index() {
       $books = Book::orderBy('id', 'desc')->get();
       return view('books.index', [
@@ -18,57 +18,18 @@ class Books extends Controller
       ]);
     }
 
-    //View the book in the browser
-    public function view_book($id) {
-      $path = Book::find($id)->book_url;
-      return response()->file($path);
-    }
-
-    //Download the book
-    public function download($id) {
-      $path = Book::find($id)->book_url;
-      return response()->download($path);
-    }
-
     //form to add a book
     public function book_form() {
-      return view('books.form');
+      return view('cms.book_add');
     }
 
-    //Store uploaded book
-    public function save(Request $request) {
-      Book::create([
-              'title' => $request->input('title'),
-              'author' => $request->input('author'),
-              'date_published' => $request->input('date_published'),
-              'description' => $request->input('description'),
-              //---To do saving uploaded cover Image
-              'cover_image' => $request->file('cover_image')->store('books'),
-              //---To do saving uploaded book
-              'book_url' => $request->file('book')->store('documents'),
-      ]);
+    public function books() {
       $books = Book::orderBy('id', 'desc')->get();
-      return view('books.index', [
-        'books' => $books,
-      ]);
+      return view('cms.book', compact('books'));
     }
 
-    //delete the book
-    public function delete($id) {
-      $book = Book::find($id);
-      $book->delete(); //The book will be softDeleted
-      $books = Book::orderBy('date', 'desc')->get();
-      return view('books.index', [
-        'books' => $books,
-      ]);
-    }
-
-    //edit the book
-    public function edit($id) {
-      $book = Event::find($id);
-      return view('books.edit_book', [
-        'book' => $book,
-      ]);
+    public function book_details(Book $book) {
+      return view('cms.book_details', compact('book'));
     }
 
 }

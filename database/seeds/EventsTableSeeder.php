@@ -22,7 +22,7 @@ class EventsTableSeeder extends Seeder
               'picture' => "1.jpg",
               'location' => $faker->city(),
               'link' => $faker->url(),
-              'date' => $faker->dateTime(),
+              'date' => $faker->date(),
               'time' => '7:30 AM',
           ];
           Event::create($event);

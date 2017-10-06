@@ -17,7 +17,10 @@ function menu_links(header){
         link="cms/worksheets";
     }
     else if(header == 'testimonial'){
-        link="cms/change_password";
+        link="cms/testimonials";
+    }
+    else if(header == 'important_date'){
+        link="cms/important_dates";
     }
     else if(header == 'slideshow'){
         link="cms/slideshows";
@@ -129,7 +132,114 @@ function form_save(form_name){
 
         });
 
-    }else if(form_name == "driver"){
+    }
+    else if(form_name == "book"){
+        $(".ipf-preloader").fadeIn(0);
+        var myForm = document.getElementById('add_form');
+        var datas = new FormData(myForm);
+
+        $.ajax({
+            type: 'post',
+            dataType: 'html',
+            url:  link,
+            data: datas,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $(".ipf-preloader").fadeOut(1000);
+                $("#main_content").html(result);
+            }
+
+        });
+
+    }
+    else if(form_name == "event"){
+        $(".ipf-preloader").fadeIn(0);
+        var myForm = document.getElementById('add_form');
+        var datas = new FormData(myForm);
+
+        $.ajax({
+            type: 'post',
+            dataType: 'html',
+            url:  link,
+            data: datas,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $(".ipf-preloader").fadeOut(1000);
+                $("#main_content").html(result);
+            }
+
+        });
+    }
+    else if(form_name == "important_date"){
+        $(".ipf-preloader").fadeIn(0);
+        var myForm = document.getElementById('add_form');
+        var datas = new FormData(myForm);
+
+        $.ajax({
+            type: 'post',
+            dataType: 'html',
+            url:  link,
+            data: datas,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $(".ipf-preloader").fadeOut(1000);
+                $("#main_content").html(result);
+            }
+
+        });
+    }
+    else if(form_name == "testimonial"){
+        $(".ipf-preloader").fadeIn(0);
+        var myForm = document.getElementById('add_form');
+        var datas = new FormData(myForm);
+
+        $.ajax({
+            type: 'post',
+            dataType: 'html',
+            url:  link,
+            data: datas,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $(".ipf-preloader").fadeOut(1000);
+                $("#main_content").html(result);
+            }
+
+        });
+    }
+    else if(form_name == "worksheet"){
+        $(".ipf-preloader").fadeIn(0);
+        var myForm = document.getElementById('add_form');
+        var datas = new FormData(myForm);
+
+        $.ajax({
+            type: 'post',
+            dataType: 'html',
+            url:  link,
+            data: datas,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $(".ipf-preloader").fadeOut(1000);
+                $("#main_content").html(result);
+            }
+
+        });
+    }
+    else if(form_name == "driver"){
         $(".ipf-preloader").fadeIn(0);
         if($('#password').val() == $('#confirm_password').val()){
             var datas = new FormData($('#add_form')[0]);
@@ -286,12 +396,35 @@ function replace_video_image(id){
     });
 }
 
-
-
+function event_details(id){
+    $(".ipf-preloader").fadeIn(0);
+    var link = "cms/event_details/"+id;
+    $.ajax({
+        url: link,
+        dataType:'html',
+        success:function(result){
+            $(".ipf-preloader").fadeOut(1000);
+            $("#main_content").html(result);
+        }
+    });
+}
 
 function blog_details(blog_id){
     $(".ipf-preloader").fadeIn(0);
     var link = "cms/blog_details/"+blog_id;
+    $.ajax({
+        url: link,
+        dataType:'html',
+        success:function(result){
+            $(".ipf-preloader").fadeOut(1000);
+            $("#main_content").html(result);
+        }
+    });
+}
+
+function book_details(id){
+    $(".ipf-preloader").fadeIn(0);
+    var link = "cms/book_details/"+id;
     $.ajax({
         url: link,
         dataType:'html',
@@ -428,6 +561,8 @@ function form_delete(form_name,id){
     if(confirm('Are You sure you want to delete this item?')){
         $(".ipf-preloader").fadeIn(0);
         var link = "cms/form_delete/"+form_name+"/"+id;
+        // var formData = new FormData();
+        // formData.append('id', id);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

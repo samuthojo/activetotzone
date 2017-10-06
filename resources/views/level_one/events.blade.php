@@ -114,7 +114,7 @@
         }
 
         #upComingEvent #leftContent{
-            
+
         }
 
         #leftContentContainer{

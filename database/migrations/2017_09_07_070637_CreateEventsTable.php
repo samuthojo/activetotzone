@@ -22,8 +22,8 @@ class CreateEventsTable extends Migration
             $table->string('venue');
             //link to photo gallery if event has passed
             $table->string('link')->default('www.facebook.com/activetotszone/photos/?ref=page_internal');
-            $table->softDeletes(); //Supports soft-deleting of models
             $table->timestamps();
+            $table->softDeletes(); //Supports soft-deleting of models
         });
     }
 

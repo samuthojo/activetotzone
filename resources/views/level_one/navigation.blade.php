@@ -53,7 +53,7 @@
             <li id="media-li"><a href="{{url('contactUs')}}" class="brand-green-color">contact us</a></li>
             {{--<li id="media-li"><a href="{{url('calendar')}}" class="brand-blue-color">School Calendar</a></li>--}}
             <li id="media-li"><a href="{{url('events')}}" class="brand-blue-color">Events</a></li>
-            <li id="media-li"><a href="{{url('books')}}" class="brand-blue-color">Books</a></li>
+            <li id="media-li"><a href="{{url('get_books')}}" class="brand-blue-color">Books</a></li>
 
         </ul></nav>
 

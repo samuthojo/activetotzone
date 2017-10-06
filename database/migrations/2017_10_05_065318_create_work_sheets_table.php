@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EditEventsTable2 extends Migration
+class CreateWorkSheetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class EditEventsTable2 extends Migration
      */
     public function up()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->date('date')->nullable(false)->change();
-            $table->string('picture')->nullable(true);
+        Schema::create('work_sheets', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('type');
+            $table->string('worksheet');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,8 +29,6 @@ class EditEventsTable2 extends Migration
      */
     public function down()
     {
-        Schema::table('events', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('work_sheets');
     }
 }

@@ -18,10 +18,10 @@ class BooksTableSeeder extends Seeder
           $event = [
               'title' => $faker->sentence($faker->numberBetween(3, 5)),
               'author' => $faker->name,
-              'date_published' => $faker->dateTime(),
+              'date_published' => $faker->date(),
               'description' => $faker->realText(120),
-              'cover_image' => "$i.jpg",
-              'book_url' => $faker->url(),
+              'cover_image' => '1.jpg',
+              'book_url' => 'TAARIFA-YA-MAONI-YA-WANANCHI.pdf',
           ];
           Book::create($event);
       }

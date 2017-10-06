@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBooksTable extends Migration
+class CreateImportantDatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('important_dates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('author');
-            $table->string('description');
-            $table->string('cover_image')->nullable();//The book's picture
-            $table->string('url')->nullable();//Where we have placed the book
+            $table->date('date');
+            $table->string('issue', 200);
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +30,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('important_dates');
     }
 }
