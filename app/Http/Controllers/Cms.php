@@ -14,6 +14,8 @@ use App\ImportantDate;
 
 use Image;
 
+use Imagick;
+
 class Cms extends Controller {
 
   public $active_repo;
@@ -309,6 +311,7 @@ class Cms extends Controller {
             if($file->isValid()) {
               $worksheet = $file->getClientOriginalName();
               $file->move('uploads/worksheets', $worksheet);
+              $this->worksheetPreview($worksheet);
             }
           }
           WorkSheet::create(compact('type', 'worksheet'));
@@ -424,6 +427,27 @@ class Cms extends Controller {
                 });
         $image->save($thumb_location);
       }
+    }
+
+    private function worksheetPreview($file_name) {
+
+      $location = 'uploads/worksheets/' . $file_name;
+
+      // read page 1
+      $im = new imagick($location . '[0]');
+
+      // convert to jpg
+      $im->setImageColorspace(255);
+      $im->setCompression(Imagick::COMPRESSION_JPEG);
+      $im->setCompressionQuality(60);
+      $im->setImageFormat('jpeg');
+
+      //resize
+      $im->resizeImage(290, 375, imagick::FILTER_LANCZOS, 1);
+
+      //write image on server
+      $im->writeImage('uploads/worksheets/thumbs/' . $file_name);
+
     }
 
     public function events() {
