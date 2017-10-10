@@ -19,7 +19,7 @@
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input type="text" data-toggle="datepicker"
-                  class="large" id="date" placeholder="Date e.g. 2,june 2016" name="date">
+                  class="large" id="date" placeholder="Date" name="date">
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input type="text" class="large" id="time" placeholder="Time e.g. 7:30AM" name="time">

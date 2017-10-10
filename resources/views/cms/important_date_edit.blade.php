@@ -12,11 +12,12 @@
     <div class="mws-panel-body">
         <form id="edit_form" name="edit_form" role="form">
             <div class="mws-form-item" style="margin-bottom: 8px;">
-              <input type="hidden" name="edit_id" id="edit_id"
+              <input type="hidden" name="id" id="edit_id"
                 value="{{$edit_details->id}}">
                 <input type="text" class="large" id="important_date"
-                  placeholder="Date e.g. 2,june 2016" name="date"
-                  value="{{$edit_details->date}}" data-toggle='datepicker'>
+                  placeholder="Date" name="date"
+                  value="{{Carbon\Carbon::parse($edit_details->date)->format('d-m-Y')}}"
+                  data-toggle='datepicker'>
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input type="text" class="large" id="issue"

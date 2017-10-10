@@ -541,6 +541,23 @@ function save_changes(form_name){
             }
 
         });
+    }else if (form_name == 'book' || form_name == 'event' || form_name == 'worksheet') {
+      var myForm = document.getElementById('edit_form');
+      var formData = new FormData(myForm);
+      $.ajax({
+          url: link,
+          type:'post',
+          dataType:'html',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (result){
+              $(".ipf-preloader").fadeOut(1000);
+              $("#main_content").html(result);
+          }
+        });
     }else{
         $(".ipf-preloader").fadeIn(0);
         $.ajax({

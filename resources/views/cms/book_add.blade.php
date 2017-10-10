@@ -12,7 +12,7 @@
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input type="text" class="large" id="date_published"
-                  placeholder="Date e.g. 2,june 2016" name="date_published">
+                  placeholder="Date published e.g. June 2016" name="date_published">
             </div>
             <div class="mws-form-item" style="margin-top: 24px;">
                 <textarea id="book_description" style="width: 100%; min-height: 100px;"

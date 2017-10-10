@@ -13,7 +13,7 @@
         <form id="add_form" name="add_form" role="form">
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input type="text" class="large" id="important_date"
-                  placeholder="Date e.g. 2,june 2016" name="date"
+                  placeholder="Date" name="date"
                   data-toggle="datepicker">
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">

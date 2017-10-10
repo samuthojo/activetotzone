@@ -13,6 +13,7 @@ use App\SlideShow;
 use App\ImportantDate;
 use App\WorkSheet;
 use App\Testimonial;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -85,7 +86,7 @@ public  function fetch_individual_data($form_name,$id){
 
 public function save_changes($form_name, $request){
       if(strcasecmp($form_name, "team") == 0){
-          Team::where('id', $request->input('edit_id'))
+          Team::where('id', $request->input('id'))
               ->update([
                   'name' => $request->input('name'),
                   'position' => $request->input('position'),
@@ -93,7 +94,7 @@ public function save_changes($form_name, $request){
               ]);
 
       }else if(strcasecmp($form_name, "video") == 0){
-          Video::where('id', $request->input('edit_id'))
+          Video::where('id', $request->input('id'))
                 ->update([
                     'link' => $request->input('link'),
                     'date' => $request->input('date'),
@@ -103,7 +104,7 @@ public function save_changes($form_name, $request){
                 ]);
 
       }else if(strcasecmp($form_name, "blog") == 0){
-          Blog::where('id', $request->input('edit_id'))
+          Blog::where('id', $request->input('id'))
               ->update([
                   'date' => $request->input('date'),
                   'author' => $request->input('author'),
@@ -112,120 +113,18 @@ public function save_changes($form_name, $request){
               ]);
       }
       else if(strcasecmp($form_name, 'important_date') == 0) {
-        ImportantDate::where('id', $request->input('edit_id'))
-                     ->update($request->except('edit_id'));
+        $id = $request->input('id');
+        $data = $request->except('id', 'date');
+        $date = Carbon::parse(request('date'))->format('Y-m-d');
+        $data = array_add($data, 'date', $date);
+        ImportantDate::where('id', $id)->update($data);
       }
-      else if(strcasecmp($form_name, 'worksheet') == 0) {
-        extract($request->all());
-        $worksheet = "";
-        if($request->hasFile('worksheet')) {
-          $file = $request->file('worksheet');
-          if($file->isValid()) {
-            $worksheet = $file->getClientOriginalName();
-            $file->move('uploads/worksheets', $worksheet);
-            WorkSheet::where('id', $request->input('edit_id'))
-                         ->update(compact('type', 'worksheet'));
-          }
-        } else {
-          WorkSheet::where('id', $request->input('edit_id'))
-                   ->update(['type' => $request->input('type'), ]);
-        }
 
-      }
       else if(strcasecmp($form_name, 'testimonial') == 0) {
-        Testimonial::where('id', $request->input('edit_id'))
-                     ->update($request->except('edit_id'));
+        Testimonial::where('id', $request->input('id'))
+                     ->update($request->except('id'));
       }
-      else if(strcasecmp($form_name, 'book') == 0) {
-        extract($request->all());
-        $image = "";
-        $cover_image = "";
-        $book = "";
-        $book_url = "";
-        $cover_exists = false;
-        $book_exists = false;
-        if($request->hasFile('cover_image')) {
-          $image = $request->file('cover_image');
-          if($image->isValid()) {
-            $cover_exists = true;
-            $cover_image = $image->getClientOriginalName();
-            $image->move('uploads/book_covers', $cover_image);
-            $this->save_thumb('cover', $cover_image);
-          } else {
-            echo 'The upload was not successful, please retry';
-          }
-        }
-        if($request->hasFile('book_url')) {
-          $book = $request->file('book_url');
-          if($book->isValid()) {
-            $book_exists = true;
-            $book_url = $book->getClientOriginalName();
-            $book->move('uploads/books', $book_url);
-          }
-        }
-        if($cover_exists && $book_exists) {
-          Book::where('id', $request->input('id'))
-              ->update(compact('title', 'author', 'date_published',
-                               'description', 'cover_image', 'book_url'));
-        }
-       else if($cover_exists) {
-         Book::where('id', $request->input('id'))
-             ->update(compact('title', 'author', 'date_published',
-                              'description', 'cover_image'));
-       }
-       else if($book_exists) {
-         Book::where('id', $request->input('id'))
-             ->update(compact('title', 'author', 'date_published',
-                              'description', 'book_url'));
-       }
-       else {
-         Book::where('id', $request->input('id'))
-             ->update(compact('title', 'author', 'date_published',
-                              'description'));
-       }
-    }
-      else if(strcasecmp($form_name, 'event') == 0) {
-        extract($request->all());
-        $picture = "";
-        $file = "";
-        if($request->hasFile('file')) {
-          $file = $request->file('file');
-          if($file->isValid()) {
-            $picture = $file->getClientOriginalName();
-            $file->move('uploads/events', $picture);
-            $this->save_thumb('event', $picture);
-            Event::where('id', $request->input('id'))
-                 ->update(compact('title', 'date', 'link', 'description',
-                                  'location', 'time', 'picture'));
-          }
-        } else {
-          Event::where('id', $request->input('id'))
-               ->update(compact('title', 'date', 'link', 'description',
-                                'location', 'time'));
-        }
 
-      }
-  }
-
-  private function save_thumb($type, $file_name) {
-    if(strcasecmp($type, 'cover') == 0) {
-      $base_location = 'uploads/book_covers/';
-      $thumb_location = public_path($base_location . 'thumbs/' . $file_name);
-      $image = Image::make($base_location . '/' . $file_name);
-      $image = $image->resize(300, null, function($constraint) {
-                  $constraint->aspectRatio();
-              });
-      $image->save($thumb_location);
-    }
-    else if(strcasecmp($type, 'event') == 0) {
-      $base_location = 'uploads/events/';
-      $thumb_location = public_path($base_location . 'thumbs/' . $file_name);
-      $image = Image::make($base_location . '/' . $file_name);
-      $image = $image->resize(300, null, function($constraint) {
-                  $constraint->aspectRatio();
-              });
-      $image->save($thumb_location);
-    }
   }
 
   public function delete_records($form_name,$id){

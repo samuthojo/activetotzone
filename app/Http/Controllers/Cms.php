@@ -13,8 +13,9 @@ use App\Testimonial;
 use App\ImportantDate;
 
 use Image;
+use Carbon\Carbon;
 
-use Imagick;
+// use Imagick;
 
 class Cms extends Controller {
 
@@ -112,39 +113,123 @@ class Cms extends Controller {
     }
 
     public function save_form_changes(Request $request, $form_name){
-        $this->active_repo->save_changes($form_name, $request);
         if(strcasecmp($form_name, "team") == 0){
+            $this->active_repo->save_changes($form_name, $request);
             $team = $this->active_repo->get_team();
             return view('cms.team', [
               'team' => $team,
             ]);
         }else if(strcasecmp($form_name, "video") == 0){
+            $this->active_repo->save_changes($form_name, $request);
             $video = $this->active_repo->get_video();
             return view('cms.video', [
               'video' => $video,
             ]);
         }else if(strcasecmp($form_name, "blog") == 0){
+            $this->active_repo->save_changes($form_name, $request);
             $blogs = $this->active_repo->get_blog();
             return view('cms.blog', [
               'blogs' => $blogs,
             ]);
         }
         else if(strcasecmp($form_name, 'important_date') == 0) {
+          $this->active_repo->save_changes($form_name, $request);
           return $this->important_dates();
         }
-        else if(strcasecmp($form_name, 'worksheet') == 0) {
-          return $this->worksheets();
-        }
         else if(strcasecmp($form_name, 'testimonial') == 0) {
+          $this->active_repo->save_changes($form_name, $request);
           return $this->testimonials();
         }
+        else if(strcasecmp($form_name, 'worksheet') == 0) {
+          return $this->saveWorksheetChanges();
+        }
         else if(strcasecmp($form_name, 'event') == 0) {
-          return $this->events();
+          return $this->saveEventChanges();
         }
         else if(strcasecmp($form_name, 'book') == 0) {
-          $books = Book::orderBy('id', 'desc')->get();
-          return view('cms.book', compact('books'));
+          return $this->saveBookChanges();
         }
+    }
+
+    public function saveWorksheetChanges() {
+      $request = request();
+      $id = request('id');
+      $data = $request->except('id', 'worksheet');
+      if($request->hasFile('worksheet')) {
+        $sheet = $request->file('worksheet');
+        if($sheet->isValid()) {
+          $worksheet = $sheet->getClientOriginalName();
+          $sheet->move('uploads/worksheets', $worksheet);
+          $data = array_add($data, 'worksheet', $worksheet);
+          WorkSheet::where('id', $id)->update($data);
+        }
+      } else {
+        WorkSheet::where('id', $id)->update($data);
+      }
+      return $this->worksheets();
+    }
+
+    public function saveEventChanges() {
+      $request = request();
+      $id = request('id');
+      $data = $request->except('id', 'file', 'date');
+      $date = Carbon::parse(request('date'))->format('Y-m-d');
+      if($request->hasFile('file')) {
+        $picture = $request->file('file');
+        if($picture->isValid()) {
+          $picture_name = $picture->getClientOriginalName();
+          $picture->move('uploads/events', $picture_name);
+          $this->save_thumb('event', $picture_name);
+          $data = array_add($data, 'picture', $picture_name);
+          $data = array_add($data, 'date', $date);
+          Event::where('id', $id)->update($data);
+        }
+      } else {
+        $data = array_add($data, 'date', $date);
+        Event::where('id', $id)->update($data);
+      }
+      return $this->events();
+    }
+
+    public function saveBookChanges() {
+      $request = request();
+      $id = request('id');
+      $data = $request->except('id', 'cover_image', 'book_url');
+      if($request->hasFile('cover_image') && $request->hasFile('book_url')) {
+        $cover = $request->file('cover_image');
+        $book = $request->file('book_url');
+        if($cover->isValid() && $book->isValid()) {
+          $cover_image = $cover->getClientOriginalName();
+          $book_url = $book->getClientOriginalName();
+          $cover->move('uploads/book_covers', $cover_image);
+          $book->move('uploads/books', $book_url);
+          $this->save_thumb('cover', $cover_image);
+          $data = array_add($data, 'cover_image', $cover_image);
+          $data = array_add($data, 'book_url', $book_url);
+          Book::where('id', $id)->update($data);
+        }
+      }else if($request->hasFile('cover_image'))  {
+        $cover = $request->file('cover_image');
+        if($cover->isValid()) {
+          $cover_image = $cover->getClientOriginalName();
+          $cover->move('uploads/book_covers', $cover_image);
+          $this->save_thumb('cover', $cover_image);
+          $data = array_add($data, 'cover_image', $cover_image);
+          Book::where('id', $id)->update($data);
+        }
+      }else if($request->hasFile('book_url')) {
+        $book = $request->file('book_url');
+        if($book->isValid()) {
+          $book_url = $book->getClientOriginalName();
+          $book->move('uploads/books', $book_url);
+          $data = array_add($data, 'book_url', $book_url);
+          Book::where('id', $id)->update($data);
+        }
+      }else {
+        Book::where('id', $id)->update($data);
+      }
+      $books = Book::orderBy('id', 'desc')->get();
+      return view('cms.book', compact('books'));
     }
 
     public function form_delete($form_name,$id){
@@ -311,7 +396,7 @@ class Cms extends Controller {
             if($file->isValid()) {
               $worksheet = $file->getClientOriginalName();
               $file->move('uploads/worksheets', $worksheet);
-              $this->worksheetPreview($worksheet);
+              // $this->worksheetPreview($worksheet);
             }
           }
           WorkSheet::create(compact('type', 'worksheet'));
@@ -383,6 +468,7 @@ class Cms extends Controller {
           SlideShow::create(['slideshow' => $file_name, ]);
         }
       }
+      return $this->slideshows();
     }
 
     public function updateSlide(Request $request, $id) {
@@ -429,26 +515,26 @@ class Cms extends Controller {
       }
     }
 
-    private function worksheetPreview($file_name) {
-
-      $location = 'uploads/worksheets/' . $file_name;
-
-      // read page 1
-      $im = new imagick($location . '[0]');
-
-      // convert to jpg
-      $im->setImageColorspace(255);
-      $im->setCompression(Imagick::COMPRESSION_JPEG);
-      $im->setCompressionQuality(60);
-      $im->setImageFormat('jpeg');
-
-      //resize
-      $im->resizeImage(290, 375, imagick::FILTER_LANCZOS, 1);
-
-      //write image on server
-      $im->writeImage('uploads/worksheets/thumbs/' . $file_name);
-
-    }
+    // private function worksheetPreview($file_name) {
+    //
+    //   $location = 'uploads/worksheets/' . $file_name;
+    //
+    //   // read page 1
+    //   $im = new imagick($location . '[0]');
+    //
+    //   // convert to jpg
+    //   $im->setImageColorspace(255);
+    //   $im->setCompression(Imagick::COMPRESSION_JPEG);
+    //   $im->setCompressionQuality(60);
+    //   $im->setImageFormat('jpeg');
+    //
+    //   //resize
+    //   $im->resizeImage(290, 375, imagick::FILTER_LANCZOS, 1);
+    //
+    //   //write image on server
+    //   $im->writeImage('uploads/worksheets/thumbs/' . $file_name);
+    //
+    // }
 
     public function events() {
       $events = Event::orderBy('id', 'desc')->get();
