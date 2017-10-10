@@ -114,6 +114,7 @@ function form_save(form_name){
         datas.append("title",$('#title').val());
         datas.append("date",$('#date').val());
         datas.append("author",$('#author').val());
+        datas.append("link",$('#link').val());
         datas.append("description",$('#myTextarea').val());
 
         $.ajax({
@@ -525,6 +526,8 @@ function save_changes(form_name){
 
         datas.append("title",$('#title').val());
         datas.append("date",$('#date').val());
+        datas.append("author",$('#author').val());
+        datas.append("link",$('#link').val());
         datas.append("description",$('#myTextarea').val());
         $.ajax({
             url:  link,

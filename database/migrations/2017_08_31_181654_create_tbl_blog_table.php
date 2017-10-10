@@ -15,6 +15,8 @@ class CreateTblBlogTable extends Migration
     {
         Schema::create('tbl_blog', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('date');
+            $table->string('author');
             $table->string('title', 200);
             $table->mediumText('description');
             $table->mediumText('link');

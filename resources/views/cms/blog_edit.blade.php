@@ -11,6 +11,10 @@
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input style="color: #000000;" type="text" class="large" name="author" id="author" placeholder="Blog author" value="{{$edit_details['author']}}">
             </div>
+            <div class="mws-form-item" style="margin-bottom: 8px;">
+                <input type="text" class="large" id="link" placeholder="Link" name="link"
+                  value="{{$edit_details['link']}}">
+            </div>
             <textarea id="myTextarea">{{$edit_details['description']}}</textarea>
             <div class="mws-button-row" style="margin-top: 24px;">
                 <button type="button" class="btn btn-success" onclick="save_changes('blog')">save</button>

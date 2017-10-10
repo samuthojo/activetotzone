@@ -47,6 +47,7 @@ class ActiveTotRepo {
             'date' => $request->input('date'),
             'author' => $request->input('author'),
             'title' => $request->input('title'),
+            'link' => $request->input('link'),
             'image' => $filename,
             'description' => $request->input('description'),
           ]);

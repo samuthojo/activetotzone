@@ -15,6 +15,9 @@
                 <input style="color: #000000;" type="text" class="large" name="author" id="author" placeholder="Blog author">
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
+                <input type="text" class="large" id="link" placeholder="Link" name="link">
+            </div>
+            <div class="mws-form-item" style="margin-bottom: 8px;">
                 <label for="file">Choose image</label><br>
                 <input type="file" name="file" id="file">
             </div>
