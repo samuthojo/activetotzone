@@ -14,9 +14,10 @@ class SlideShowsTableSeeder extends Seeder
     {
       $faker = Faker\Factory::create();
 
-      for ($i=1; $i < 5; $i++) {
+      $slides = ['1.jpg', '2.png', '3.png', '4.jpg', ];
+      foreach ($slides as $slide) {
           $slideshow = [
-              'slideshow' => "1.jpg",
+              'slideshow' => $slide,
           ];
           SlideShow::create($slideshow);
       }
