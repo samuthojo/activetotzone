@@ -12,6 +12,7 @@
 <link href="cms_assets/css/boo.css" rel="stylesheet">
 <link href="cms_assets/css/boo-coloring.css" rel="stylesheet">
 <link href="cms_assets/css/boo-utility.css" rel="stylesheet">
+<link href="cms_assets/css/flex.css" rel="stylesheet">
 
 <!-- Datatables css -->
 

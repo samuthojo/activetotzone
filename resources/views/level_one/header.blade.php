@@ -5,7 +5,7 @@
  Time: 11:10 AM -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-csp="" ng-app="fgallery">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Nursery education, nursery school, nursery school kinyerezi, nursery school mikocheni, nursery school dar, nursery school in dar es salaam Tanzania, nursery center dar es salaam, best nursery center, nursery center, nursery center kinyerezi, nursery center mikocheni, kindergarten school, best kindergarten school, kindergarten school dar es salaam, kindergarten center dar es salaam, preschool dar es salaam, best preschool, preschool, preschool center dar es salaam, day care school dar es salaam, day care center dar es salaam, best day care center dar, English medium Tanzania, English medium school, International school dar es salaam, Kids center, Children playground, Active tot zone, activetotzone, Education center, shule za watoto, shule ya watoto, chekechea, kinyerezi, mikocheni">
@@ -28,15 +28,16 @@
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
     <link  href="{{url('assets/css/reset.css')}}" rel="stylesheet"/>
 
-    <link  href="{{url('assets/css/navigationlinks.css')}}" rel="stylesheet"/>
-
     <link  href="{{url('assets/css/animate.css')}}" rel="stylesheet"/>
     <link  href="{{url('assets/css/flex.css')}}" rel="stylesheet"/>
+
+    <link  href="{{url('assets/css/navigationlinks.css')}}" rel="stylesheet"/>
     <link  href="{{url('assets/css/owl-carousel/owl.carousel.css')}}" rel="stylesheet"  type="text/css"/>
     <link  href="{{url('assets/css/owl-carousel/owl.theme.css')}}" rel="stylesheet"  type="text/css"/>
     <link  href="{{url('assets/css/owl-carousel/owl.transitions.css')}}" rel="stylesheet"  type="text/css"/>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>--}}
+    <script src="{{asset('assets/js/jquery-2.1.1.js')}}" type="text/javascript"></script>
     <script src="{{url('assets/js/prefixfree.min.js')}}" type="text/javascript"></script>
 
     @yield('styles')

@@ -24,4 +24,16 @@ class Event extends Model
       $this->attributes['date'] = Carbon::parse($value)->format('Y-m-d');
     }
 
+    public function nicedate() {
+        return Carbon::parse($this->date)->format('M jS');
+    }
+
+    public function getLocationName(){
+        return "Activetotz " . ["Kinyerezi", "Mikocheni"][$this->location];
+    }
+
+
+    public function getLocationCoords(){
+        return ["{lat: -6.8468984, lng: 39.153128}", "{lat: -6.76263, lng: 39.2501917}"][$this->location];
+    }
 }

@@ -142,12 +142,18 @@
     </div>
     <div class="footer-calendar">
         <h1>Important Dates</h1>
-        <div>
-            <a class="icon-circle brand-purple" >
-                <i>26,Aug</i>
-            </a>
-            <span>Play Day Mikocheni</span>
-        </div>
+        @foreach($important_dates as $day)
+            <div class="layout center">
+                <a class="icon-circle {{$loop->index % 2 == 0 ? 'brand-purple'  : 'brand-purple'}}" >
+                    <i>
+                        {{$day->nicedate()}}
+                    </i>
+                </a>
+                <span>
+                    {{$day->issue}}
+                </span>
+            </div>
+        @endforeach
        <!-- <div>
             <a class="icon-circle brand-green" >
                 <i>26,Aug</i>

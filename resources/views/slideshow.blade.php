@@ -1,36 +1,41 @@
 <style>
-  .row{
-    display: flex;
-    flex-wrap: wrap;
+  .mws-panel-body{
+
   }
 
-  .col-lg-6{
-    width: calc(50% - 20px);
-    margin-right: 20px;
-    margin-bottom: 40px;
+  .mws-panel-body > div{
+      width: calc(50% - 5px);
+      margin-bottom: 40px;
   }
 
-  .col-lg-6 a{
-    display: block;
-    margin-bottom: -8px;
-    height: 300px;
+  .mws-panel-body > div a{
+      display: block;
+      margin-bottom: -8px;
+      overflow: hidden;
+      background: #000;
+      min-height: 190px;
   }
 
-  .col-lg-6 a img{
-    height: 100%;
-    width: auto;
+  .mws-panel-body > div a ~ span{
+      font-weight: bold;
+  }
+
+  .mws-panel-body > div a img{
+    /*height: 100%;*/
+    /*width: auto;*/
+      width: 100%;
   }
 
   .my_image {
     padding-bottom: 10px;
   }
   .mws-panel .mws-panel-body {
-    width: 93%;
-    display: table;
-    height: auto;
+    /*width: 93%;*/
+    /*display: table;*/
+    /*height: auto;*/
   }
   .slide {
-    float: left;
+    /*float: left;*/
   }
 </style>
 <script>
@@ -112,42 +117,43 @@
     <div class="mws-panel-header">
         <span style="float: left;">Slide Pictures: </span>
     </div>
-    <div class="mws-panel-body">
-      <div class="container">
-        <div class="row">
-            @php
-              $size = count($slideshows);
-              $isLessThanFour = $size < 4;
-            @endphp
+    <div class="mws-panel-body layout justified wrap">
+        @php
+            $size = count($slideshows);
+            $isLessThanFour = $size < 4;
+        @endphp
 
-            @foreach($slideshows as $slideshow)
-              <div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>
+        @foreach($slideshows as $slideshow)
+            <div>
                 <a href=
-                  "{{ asset('uploads/slideshows/' . $slideshow->slideshow) }}"
-                   target="_blank">
-                  <img src="{{ asset('uploads/slideshows/thumbs/' . $slideshow->slideshow) }}"
-                    class="img-rounded {{'img' . $slideshow->id}}"
-                    title="{{'slide ' . $loop->iteration}}"
-                    alt="slide">
+                   "{{ asset('uploads/slideshows/' . $slideshow->slideshow) }}"
+                   target="_blank" class="img-rounded">
+                    <img src="{{ asset('uploads/slideshows/' . $slideshow->slideshow) }}"
+                         class="{{'img' . $slideshow->id}}"
+                         title="{{'slide ' . $loop->iteration}}"
+                         alt="slide">
                 </a><br/>
-                <span style="font-weight: bold;">Change picture: </span><br/>
+                <span>Change picture: </span><br/>
                 <input type='file' name='slideshow' id="{{'file' . $slideshow->id}}"
-                 onchange="previewFile('{{$slideshow->id}}')">
-              </div>
-            @endforeach
+                       onchange="previewFile('{{$slideshow->id}}')">
+            </div>
+        @endforeach
 
-            @if($isLessThanFour)
-              @for($i = ($size + 1); $i < 5; $i++)
-                <div class='col-lg-6' style="background: #CCCCCC; height: 300px;"
-                  title="{{'slide ' . $i}}">
-                  <span style="font-weight: bold;">Change picture: </span><br/>
-                  <input type='file' name='slideshow'
-                    id="{{'file' . $i}}" onchange="refresh('{{$i}}')">
+        @if($isLessThanFour)
+            @for($i = ($size + 1); $i < 5; $i++)
+                <div>
+                    <a href="#"
+                       class="img-rounded"
+                       style="background: #CCCCCC;"
+                       title="{{'slide ' . $i}}">
+
+                    </a><br>
+
+                    <span>Change picture: </span><br/>
+                    <input type='file' name='slideshow'
+                           id="{{'file' . $i}}" onchange="refresh('{{$i}}')">
                 </div>
-              @endfor
-            @endif
-
-        </div>
-      </div>
+            @endfor
+        @endif
     </div>
 </div>

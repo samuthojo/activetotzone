@@ -172,7 +172,11 @@ class Cms extends Controller {
     public function saveEventChanges() {
       $request = request();
       $id = request('id');
-      $data = $request->except('id', 'file', 'date');
+      $link = request('link');
+      if(is_null($link)) {
+        $link = 'www.facebook.com/activetotszone/photos/?ref=page_internal';
+      }
+      $data = $request->except('id', 'file', 'date', 'link');
       $date = Carbon::parse(request('date'))->format('Y-m-d');
       if($request->hasFile('file')) {
         $picture = $request->file('file');
@@ -182,9 +186,11 @@ class Cms extends Controller {
           $this->save_thumb('event', $picture_name);
           $data = array_add($data, 'picture', $picture_name);
           $data = array_add($data, 'date', $date);
+          $data = array_add($data, 'link', $link);
           Event::where('id', $id)->update($data);
         }
       } else {
+        $data = array_add($data, 'link', $link);
         $data = array_add($data, 'date', $date);
         Event::where('id', $id)->update($data);
       }
@@ -372,6 +378,9 @@ class Cms extends Controller {
           extract($request->all());
           $picture = "";
           $file = "";
+          if(is_null($link)) {
+            $link = 'www.facebook.com/activetotszone/photos/?ref=page_internal';
+          }
           if($request->hasFile('file')) {
             $file = $request->file('file');
             if($file->isValid()) {

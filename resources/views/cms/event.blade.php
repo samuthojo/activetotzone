@@ -22,13 +22,17 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$event['title']}}</td>
                             <td>{{Carbon\Carbon::parse($event['date'])->format("j M \\'y")}}</td>
-                            <td>{{$event['location']}}</td>
+                            <td>{{$event->getLocationName()}}</td>
 
                           <td>
                               <div class="btn-group">
                                   <button type="button" class="btn btn-small btn-info"
                                     onclick="event_details({{$event['id']}})">
                                     <i class="fa fa-info"></i>
+                                  </button>
+                                  <button type="button" class="btn btn-small btn-warning"
+                                          onclick="form_edit('event', {{$event['id']}})">
+                                      <i class="fa fa-pencil"></i>
                                   </button>
                                   <button type="button" class="btn btn-small btn-danger"
                                     onclick="form_delete('event', {{$event['id']}})">

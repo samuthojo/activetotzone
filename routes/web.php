@@ -19,6 +19,9 @@ Route::get('/blogs', 'LevelOne@blog');
 Route::get('/video/{category}', 'LevelOne@video');
 Route::get('/contactUs', 'LevelOne@contactUs');
 Route::get('/calendar', 'LevelOne@calendar');
+Route::get('/gallery', 'LevelOne@gallery');
+Route::get('get_books', 'LevelOne@books');
+Route::get('get_work_sheets', 'LevelOne@work_sheets');
 
 Route::get('read/{blog_id}/{blog_title}', 'LevelTwo@read');
 
@@ -44,8 +47,6 @@ Route::get('adminstart', 'Admin@adminstart');
 Route::post('send_email', 'LevelOne@send_email');
 
 Route::get('events', 'LevelOne@events');
-
-Route::get('get_books', 'Books@index');
 
 Route::prefix('cms')->group(function() {
 

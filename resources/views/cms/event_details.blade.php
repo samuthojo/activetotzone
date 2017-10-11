@@ -25,7 +25,7 @@
           </tr>
           <tr>
             <th>Location: </th>
-              <td>{{ $event->location }}</td>
+              <td>{{ $event->getLocationName() }}</td>
           </tr>
           <tr>
             <th>Date: </th>

@@ -15,4 +15,8 @@ class ImportantDate extends Model
     public function setDateAttribute($value) {
       $this->attributes['date'] = Carbon::parse($value)->format('Y-m-d');
     }
+
+    public function nicedate() {
+        return Carbon::parse($this->date)->format('d M');
+    }
 }

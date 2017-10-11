@@ -4,9 +4,9 @@
  Date: 19/07/2016
  Time: 9:30 AM -->
 
-<link  href="{{url('assets/css/owl-carousel/owl.carousel.css')}}" rel="stylesheet"/>
-<link  href="{{url('assets/css/owl-carousel/owl.theme.css')}}" rel="stylesheet"/>
-<link  href="{{url('assets/css/owl-carousel/owl.transitions.css')}}" rel="stylesheet"/>
+<link  href="{{asset('assets/css/owl-carousel/owl.carousel.css')}}" rel="stylesheet"/>
+<link  href="{{asset('assets/css/owl-carousel/owl.theme.css')}}" rel="stylesheet"/>
+<link  href="{{asset('assets/css/owl-carousel/owl.transitions.css')}}" rel="stylesheet"/>
 <style>
     .ipf-slide-show{
 
@@ -27,22 +27,12 @@
 
 <section class="ipf-slide-show">
   <div id="owl-demo" class="owl-carousel slide-show">
-	<div class="item">
-            <img src="{{url('assets/images/activetotsbanner1.jpg')}}" width="100%" alt="Active Tots Zone">
-        </div>
-        <div class="item">
-            <img src="{{url('assets/images/activetotsbanner3.png')}}" width="100%" alt="Active Tots Zone">
-        </div>
-        <div class="item">
-            <img src="{{url('assets/images/activetotsbanner.png')}}" width="100%" alt="Active Tots Zone">
-        </div>
-        <div class="item">
-            <img src="{{url('assets/images/activetotsbanner1.jpg')}}" width="100%" alt="Active Tots Zone">
-        </div>
-        <div class="item">
-            <img src="{{url('assets/images/activetotsbanner2.jpg')}}" width="100%" alt="Active Tots Zone">
-        </div>
-    </div>
+        @foreach($slides as $slide)
+            <div class="item">
+                <img src="{{asset('uploads/slideshows/' . $slide->slideshow)}}" width="100%" alt="Active Tots Zone">
+            </div>
+        @endforeach
+  </div>
 </section>
 
 <script  src="{{url('assets/css/owl-carousel/owl.carousel.js')}}" type="text/javascript"></script>

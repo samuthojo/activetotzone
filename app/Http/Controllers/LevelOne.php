@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
+use App\ImportantDate;
+use App\SlideShow;
+use App\WorkSheet;
 use Illuminate\Http\Request;
 use App\Repositories\ActiveTotRepo;
 use App\Event;
@@ -16,9 +20,12 @@ class LevelOne extends Controller {
 
     public function index() {
       $blogs = $this->active_repo->get_top_three_blogs();
+      $slides = SlideShow::all();
+
       return view('index', [
         'title' => "Active TOT'S ZONE",
         'blogs' => $blogs,
+        'slides' => $slides
       ]);
     }
 
@@ -46,6 +53,26 @@ class LevelOne extends Controller {
       ]);
     }
 
+    public function books() {
+        $books = Book::orderBy('id', 'desc')->get();
+        return view('books.index', [
+            'books' => $books,
+        ]);
+    }
+
+    public function work_sheets() {
+        $work_sheets = WorkSheet::orderBy('id', 'desc')->get();
+        return view('work_sheets.index', [
+            'work_sheets' => $work_sheets,
+        ]);
+    }
+
+    public function gallery() {
+        return view('level_two.gallery', [
+            'title' => "Gallery - Active TOT'S ZONE",
+        ]);
+    }
+
     public function contactUs() {
       return view('level_two.contact_us', [
         'title' => "Contact Us - Active TOT'S ZONE",
@@ -59,16 +86,20 @@ class LevelOne extends Controller {
     }
 
     public function events() {
-      $this->update();
-      $events = Event::orderBy('date', 'desc')->get();
-      // $events->map(function($event){
-      //   return {
-      //     status =
-      //   }
-      // });
-      return view('level_one.events', [
-        'events' => $events,
-      ]);
+        $this->update();
+        // $events = Event::orderBy('date', 'desc')->get();
+        $events = Event::orderBy('date', 'desc')->limit(4)->get()->map(function($e){
+            $event = $e;
+            $event->locationName = $e->getLocationName();
+            $event->coordinates = $e->getLocationCoords();
+
+            return $event;
+        });
+
+         return view('level_one.events', [
+           'events' => $events,
+           'next_event' => $events->first(),
+         ]);
     }
 
     /**

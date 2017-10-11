@@ -44,7 +44,7 @@
             background-size: cover;
             overflow: hidden;
             background-position: center;
-            background-image: url({{asset('assets/images/playdayposter2.png')}});
+            background-image: url({{asset('uploads/events/' . $next_event->picture)}});
         }
 
         #upComingEvent #title .image img{
@@ -61,18 +61,18 @@
 
         #upComingEvent #title .text .lone-date{
             font-size: 30px;
-            margin-bottom: 12px;
+            /*margin-bottom: 12px;*/
         }
 
         #upComingEvent #title .text h1{
             font-size: 2em;
             line-height: 1.2em;
-            margin-bottom: 8px;
-            margin-top: 8px;
+            margin-top: -40px;
             font-family: "Love Ya Like A Sister", serif;
         }
 
         #upComingEvent #title .text > p{
+            display: block;
             text-align: left;
             font-size: 1.3em;
             font-family: "Qanelas Regular", sans-serif;
@@ -85,7 +85,8 @@
         }
 
         #infos{
-            margin: 20px 0;
+            margin-top: -12px;
+            margin-bottom: 20px;
         }
 
         #infos p{
@@ -94,7 +95,10 @@
         }
 
         #infos p i{
-            margin-right: 4px;
+            display: inline-flex;
+            justify-content: center;
+            min-width: 20px;
+            margin-right: 8px;
         }
 
         #bookBtn{
@@ -163,7 +167,7 @@
         }
 
         #upComingEvent #rightContent{
-            width: 350px;
+            max-width: 350px;
         }
 
         #upComingEvent #rightContent h3{
@@ -200,12 +204,13 @@
         #otherEvents .event-item{
             width: calc(33.333% - 12px);
             margin-right: 12px;
-            text-align: center;
+            /*text-align: center;*/
+            background: #f0f0f0;
         }
 
         #otherEvents .event-item .image{
             height: 200px;
-            background: #eee;
+            background: #ddd;
             margin-bottom: 18px;
             overflow: hidden;
         }
@@ -214,13 +219,111 @@
             width: 100%;
         }
 
+        #otherEvents .event-item .event-text{
+            padding: 0 20px;
+        }
+
         #otherEvents .event-item h3{
             font-family: Qanelas, sans-serif;
             font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        #otherEvents .event-item h5{
+            display: inline-block;
+            /*font-size: 16px;*/
+        }
+
+        #otherEvents .event-item h6{
+            display: inline-block;
+            font-size: 16px;
+            color: #777;
         }
 
         #otherEvents .event-item p{
             font-size: 16px;
+            margin-top: 8px;
+            margin-bottom: 24px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        @media all and (max-width : 520px) {
+            body, .call-btn {
+                width: 100vw;
+                overflow-x: hidden;
+            }
+
+            #events {
+                width: 100vw;
+                margin-top: -40px;
+            }
+
+            #upComingEvent #title, #eventList, #content{
+                flex-direction: column;
+            }
+
+            #upComingEvent{
+                padding-top: 0;
+            }
+
+            #upComingEvent #card {
+                margin-bottom: 0;
+                box-shadow: none;
+            }
+
+            #upComingEvent #title{
+
+            }
+
+            #upComingEvent #content{
+                padding: 20px 0;
+                padding-bottom: 10px;
+            }
+
+            #upComingEvent #title .text {
+                padding: 0 20px;
+                padding-bottom: 8px;
+                background: #f0f0f0;
+                width: 100%;
+                margin: auto;
+                height: auto;
+                justify-content: flex-start;
+            }
+
+            #upComingEvent #title .text h1{
+                margin-top: 8px;
+                margin-bottom: 30px;
+            }
+
+            #upComingEvent #title .text span {
+                margin-top: 40px;
+            }
+
+            #upComingEvent #rightContent{
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            #otherEvents #eventList {
+                padding: 0 20px;
+                width: 100vw;
+                margin-bottom: 0;
+            }
+
+            #otherEvents {
+                padding-top: 35px;
+                margin-bottom: 20px;
+            }
+
+            .event-item{
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .event-item:not(:last-child){
+                margin-bottom: 20px;
+            }
         }
     </style>
 @endsection
@@ -232,15 +335,15 @@
             <div id="card">
                 <div id="title" class="layout">
                     <div class="image flex">
-                        <img src="{{asset('assets/images/playdayposter2.png')}}" alt="" style="width: 100%;">
+                        <img src="{{asset('uploads/events/' . $next_event->picture)}}" alt="" style="width: 100%;">
                     </div>
                     <div class="text layout vertical justified">
                         <span>UPCOMING EVENT</span>
-                        <h1>Playday season 1 episode 16</h1>
+                        <h1>{{$next_event->title}}</h1>
                         <div id="infos">
-                            <p><i class="fa fa-calendar"></i>Sep 30th</p>
-                            <p><i class="fa fa-clock-o"></i>From 7:30AM</p>
-                            <p><i class="fa fa-map-marker"></i>Activetotz Kinyerezi</p>
+                            <p><i class="fa fa-calendar"></i>{{$next_event->nicedate()}}</p>
+                            <p><i class="fa fa-clock-o"></i>From {{$next_event->time}}</p>
+                            <p><i class="fa fa-map-marker"></i>{{$next_event->locationName}}</p>
 
                             <a href="#" id="bookBtn" class="brand-color-purple">
                                 BOOK EVENT
@@ -255,23 +358,22 @@
                             <div id="description">
                                 <h3>DESCRIPTION</h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, adipisci, architecto dolorem ea ex fugit id incidunt ipsa libero magnam, minus nemo numquam placeat possimus recusandae saepe sunt voluptate voluptates!
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, ad
+                                    {!! $next_event->description !!}
                                 </p>
                             </div>
 
                             <div id="shareEvent">
                                 <h3>SHARE WITH FRIENDS</h3>
                                 <div class="layout">
-                                    <a href="#" class="icon layout center-center">
+                                    <a target="_blank" href="https://www.facebook.com/sharer.php?s=100&p[url]=http://www.2017.activetotzone.com/events" class="icon layout center-center" title="Share on facebook">
                                         <i class="fa fa-facebook"></i>
                                     </a>
-                                    <a href="#" class="icon layout center-center">
+                                    <a target="_blank" href="https://twitter.com/intent/tweet?text=@activetotszone's Playday Season 1 episode 16 is coming to town on Oct 13th, don't miss." class="icon layout center-center" title="Share on twitter">
                                         <i class="fa fa-twitter"></i>
                                     </a>
-                                    <a href="#" class="icon layout center-center">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
+                                    {{--<a href="#" class="icon layout center-center" title="Share on email">--}}
+                                        {{--<i class="fa fa-envelope-o"></i>--}}
+                                    {{--</a>--}}
                                 </div>
                             </div>
                         </div>
@@ -286,42 +388,29 @@
 
         <div id="otherEvents">
             <h2>Past Events</h2>
-            <div id="eventList" class="layout">
-                <a href="#" class="event-item">
-                    <div class="image">
-                        <img src="{{asset('assets/images/events/1.jpg')}}" alt="">
-                    </div>
-                    <h3>
-                        Parents &amp; Playday Episode 15
-                    </h3>
-                    <p>
-                        Click to see more
-                    </p>
-                </a>
+            <div id="eventList" class="layout wrap">
+                @foreach($events as $event)
+                    @if($loop->iteration == 1)
+                        @continue
+                    @endif
 
-                <a href="#" class="event-item">
-                    <div class="image">
-                        <img src="{{asset('assets/images/events/2.jpg')}}" alt="">
-                    </div>
-                    <h3>
-                        Parents &amp; Playday Episode 14
-                    </h3>
-                    <p>
-                        Click to see more
-                    </p>
-                </a>
-
-                <a href="#" class="event-item">
-                    <div class="image">
-                        <img src="{{asset('assets/images/events/3.jpg')}}" alt="">
-                    </div>
-                    <h3>
-                        Parents &amp; Playday Episode 13
-                    </h3>
-                    <p>
-                        Click to see more
-                    </p>
-                </a>
+                    <a target="_blank" href="{{$event->link}}" class="event-item">
+                        <div class="image">
+                            <img src="{{asset('uploads/events/' . $event->picture)}}" alt="">
+                        </div>
+                        <div class="event-text">
+                            <h3>
+                                {{--Parents &amp; Playday Episode 14--}}
+                                {{$event->title}}
+                            </h3>
+                            <h5>{{$event->nicedate()}}</h5>&nbsp; - &nbsp;
+                            <h6>{{$event->locationName}}</h6>
+                            <p class="brand-purple-color">
+                                view on facebook
+                            </p>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
@@ -331,10 +420,11 @@
     <script type="text/javascript">
 //            /
         function initMap() {
-            var opt = { minZoom: 17, maxZoom: 17 };
+//            var opt = { minZoom: 12, maxZoom: 12 };
             var map1 = new google.maps.Map(document.getElementById('eventMap'), {
-                zoom: 17,
-                center: {lat: -6.762209, lng: 39.2500213}
+                zoom: 14,
+                center: {{$next_event->coordinates}}
+//            {lat: -6.762209, lng: 39.2500213}
             });
 
 //                map1.setOptions(opt);

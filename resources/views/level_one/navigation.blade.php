@@ -50,11 +50,22 @@
                 </ul>
             </li>
 
-            <li id="media-li"><a href="{{url('contactUs')}}" class="brand-green-color">contact us</a></li>
             {{--<li id="media-li"><a href="{{url('calendar')}}" class="brand-blue-color">School Calendar</a></li>--}}
             <li id="media-li"><a href="{{url('events')}}" class="brand-blue-color">Events</a></li>
-            <li id="media-li"><a href="{{url('get_books')}}" class="brand-blue-color">Books</a></li>
 
+            <li id="shows-li">
+                <label for="drop-5" class="toggle brand-blue-color">Resource Center</label>
+                <a href="#">Resource center&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+                <input type="checkbox" id="drop-5"/>
+                <ul >
+                    <li><a href="{{url('get_books')}}" class="brand-purple-color">Books</a></li>
+                    <li><a href="{{url('get_work_sheets')}}" >Work Sheets</a></li>
+                </ul>
+            </li>
+
+            <li id="media-li"><a href="{{url('gallery')}}" class="brand-blue-color">Gallery</a></li>
+
+            <li id="media-li"><a href="{{url('contactUs')}}" class="brand-green-color">contact us</a></li>
         </ul></nav>
 
 

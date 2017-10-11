@@ -31,10 +31,10 @@
                 <input type="text" class="large" id="time" placeholder="Time e.g. 7:30AM" name="time"
                  value="{{$edit_details->time}}">
             </div>
-            <div class="mws-form-item" style="margin-bottom: 8px;">
+            <div class="mws-form-item" style="margin-bottom: 8px;" {{$edit_details->location}}>
                 <select id="location" name="location">
-                  <option value="kinyerezi">Kinyerezi</option>
-                  <option value="mikocheni">Mikocheni</option>
+                  <option value="0">Kinyerezi</option>
+                  <option value="1">Mikocheni</option>
                 </select>
             </div>
             <div class="mws-form-item" style="margin-top: 24px;">

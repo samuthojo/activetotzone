@@ -1,0 +1,125 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/*@import url(http://fonts.googleapis.com/css?family=Oxygen:700|Source+Sans+Pro:300);*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, main {
+	display: block;
+}
+@font-face {
+    font-family: "Qanelas Regular";
+    font-style: normal;
+    font-weight: normal;
+    src:url("../../fonts/Qanelas-Regular.otf");
+}
+@font-face {
+    font-family: "Qanelas bold";
+    font-style: normal;
+    font-weight: normal;
+    src:url("../../fonts/Qanelas-Bold.otf");
+}
+@font-face {
+    font-family: "Qanelas light";
+    font-style: normal;
+    font-weight: normal;
+    src:url("../../fonts/Qanelas-Light.otf");
+}
+@font-face {
+    font-family: "Love light";
+    font-style: normal;
+    font-weight: normal;
+    src:url("../../fonts/LoveYaLikeASister.ttf");
+}
+
+
+html,body{
+    width: 100%;
+    /*height: 100%;*/
+    font-family: "Qanelas light",sans-serif;
+
+
+}
+
+.brand-red{
+    background-color: #EF4836;
+}
+.brand-red-color{
+    color: #EF4836!important;;
+}
+.brand-green{
+    background-color: #1BBC9B;
+}
+.brand-green-color{
+    color: #1BBC9B!important;
+}
+.brand-blue{
+    background-color: #3A539B;
+}
+.brand-blue-color{
+    color: #3A539B!important;;
+}
+.brand-yellow{
+    background-color: #F7CA18;
+}
+.brand-yellow-color{
+    color: #e7bc19 !important;;
+}
+.brand-purple{
+    background-color: #913D88;
+}
+.brand-purple-color{
+    color: #913D88!important;;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative
+}

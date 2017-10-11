@@ -1,9 +1,9 @@
 <link  href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
 <script src="{{ asset('js/datepicker.js') }}"></script>
 <script>
-  $('[data-toggle="datepicker"]').datepicker({
-    format: 'dd-mm-yyyy'
-  });
+    $('[data-toggle="datepicker"]').datepicker({
+        format: 'dd-mm-yyyy'
+    });
 </script>
 <div class="mws-panel grid_5">
     <div class="mws-panel-header">
@@ -19,7 +19,7 @@
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input type="text" data-toggle="datepicker"
-                  class="large" id="date" placeholder="Date" name="date">
+                       class="large" id="date" placeholder="Date" name="date">
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <input type="text" class="large" id="time" placeholder="Time e.g. 7:30AM" name="time">
@@ -27,13 +27,13 @@
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <select id="location" name="location">
                     <option disabled selected value="">choose location</option>
-                    <option value="kinyerezi">Kinyerezi</option>
-                    <option value="mikocheni">Mikocheni</option>
+                    <option value="0">Kinyerezi</option>
+                    <option value="1">Mikocheni</option>
                 </select>
             </div>
             <div class="mws-form-item" style="margin-top: 24px;">
                 <textarea id="description" style="width: 100%; min-height: 100px;"
-                  name="description" placeholder="Short description"></textarea>
+                          name="description" placeholder="Short description"></textarea>
             </div>
             <div class="mws-form-item" style="margin-bottom: 8px;">
                 <span>Upload image</span>

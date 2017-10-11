@@ -11,6 +11,16 @@
         display: table;
     }
 
+    @media all and (max-width : 768px) {
+        .lightwidget__tile {
+            max-width: 50% !important;
+            width: 50% !important;
+        }
+
+        .lightwidget__tile:nth-child(n > 4){
+            display: none;
+        }
+    }
 </style>
 
 <section class="ipf-insta">
