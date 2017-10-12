@@ -248,6 +248,12 @@
             font-weight: bold;
         }
 
+        @media all and (min-width : 521px) {
+            #upComingEvent #rightContent{
+                width: 350px;
+            }
+        }
+
         @media all and (max-width : 520px) {
             body, .call-btn {
                 width: 100vw;
