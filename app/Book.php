@@ -24,4 +24,8 @@ class Book extends Model
     * @var string
     */
    protected $dateFormat = 'Y-m-d';
+
+   public function getPriceAttribute($price) {
+     return sprintf('%s', number_format($price, 0));
+   }
 }

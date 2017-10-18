@@ -14,6 +14,7 @@
             padding-top: 80px;
             background: #f0f0f0;
             overflow: hidden;
+            color: inherit !important;
         }
 
         #upComingEvent .bg{
@@ -44,7 +45,7 @@
             background-size: cover;
             overflow: hidden;
             background-position: center;
-            background-image: url({{asset('uploads/events/' . $next_event->picture)}});
+            background-image: url("{{asset('uploads/events/' . $next_event->picture)}}");
         }
 
         #upComingEvent #title .image img{
