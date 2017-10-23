@@ -14,6 +14,8 @@ class BooksTableSeeder extends Seeder
     {
       $faker = Faker\Factory::create();
 
+      $subjects = $sub_subjects = $grades = 1;
+
       for ($i=1; $i < 19; $i++) {
           $book = [
               'title' => $faker->sentence($faker->numberBetween(3, 5)),
@@ -23,11 +25,14 @@ class BooksTableSeeder extends Seeder
               'description' => $faker->realText(120),
               'cover_image' => '1.jpg',
               'book_url' => 'TAARIFA-YA-MAONI-YA-WANANCHI.pdf',
-              'subject_id' => $i,
-              'grade_id' => $i,
-              'sub_subject_id' => $i,
+              'subject_id' => $subjects,
+              'grade_id' => $grades,
+              'sub_subject_id' => $sub_subjects,
           ];
           Book::create($book);
+          $subjects = ($subjects < 6) ? $subjects++ : 0;
+          $grades = ($grades < 3) ? $grades++ : 0;
+          $sub_subjects = ($sub_subjects < 14) ? $sub_subjects++ : 0;
       }
     }
 }
