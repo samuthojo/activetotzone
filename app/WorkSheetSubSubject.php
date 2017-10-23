@@ -12,4 +12,12 @@ class WorkSheetSubSubject extends Model
   protected $dates = ['deleted_at',];
 
   protected $guarded = ['id', ];
+
+  public function workSheetSubject() {
+    return $this->belongsTo('App\WorkSheetSubject');
+  }
+
+  public function workSheets() {
+    return $this->hasMany('App\WorkSheet');
+  }
 }

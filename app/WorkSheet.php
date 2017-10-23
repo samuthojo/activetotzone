@@ -12,4 +12,16 @@ class WorkSheet extends Model
     protected $dates = ['deleted_at',];
 
     protected $guarded = ['id', ];
+
+    public function workSheetGrade() {
+      return $this->belongsTo('App\WorkSheetGrade');
+    }
+
+    public function workSheetSubject() {
+      return $this->belongsTo('App\WorkSheetSubject');
+    }
+
+    public function workSheetSubSubject() {
+      return $this->belongsTo('App\WorkSheetSubSubject');
+    }
 }

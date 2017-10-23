@@ -12,4 +12,12 @@ class SubSubject extends Model
   protected $dates = ['deleted_at',];
 
   protected $guarded = ['id', ];
+
+  public function subject() {
+    return $this->belongsTo('App\Subject');
+  }
+
+  public function books() {
+    return $this->hasMany('App\Book');
+  }
 }

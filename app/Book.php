@@ -25,7 +25,15 @@ class Book extends Model
     */
    protected $dateFormat = 'Y-m-d';
 
-   public function getPriceAttribute($price) {
-     return sprintf('%s', number_format($price, 0));
+   public function grade() {
+     return $this->belongsTo('App\Grade');
+   }
+
+   public function subject() {
+     return $this->belongsTo('App\Subject');
+   }
+
+   public function subSubject() {
+     return $this->belongsTo('App\SubSubject');
    }
 }

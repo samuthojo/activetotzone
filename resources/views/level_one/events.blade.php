@@ -352,7 +352,7 @@
                             <p><i class="fa fa-clock-o"></i>From {{$next_event->time}}</p>
                             <p><i class="fa fa-map-marker"></i>{{$next_event->locationName}}</p>
 
-                            <a href="#" id="bookBtn" class="brand-color-purple">
+                            <a href="{{$next_event->link}}" target="_blank" id="bookBtn" class="brand-color-purple">
                                 BOOK EVENT
                             </a>
                         </div>

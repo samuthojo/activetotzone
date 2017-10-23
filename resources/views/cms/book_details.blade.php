@@ -21,18 +21,38 @@
             <th>Title: </th>
               <td>{{ $book->title }}</td>
           </tr>
+          @if(!is_null($book->author))
           <tr>
             <th>Author: </th>
               <td>{{ $book->author }}</td>
           </tr>
+          @endif
+          @if(!is_null($book->date_published))
           <tr>
             <th>Date Published: </th>
               <td>{{ $book->date_published }}</td>
           </tr>
+          @endif
+          <tr>
+            <th>Grade: </th>
+              <td>{{ $book->grade }}</td>
+          </tr>
+          <tr>
+            <th>Subject: </th>
+              <td>{{ $book->subject }}</td>
+          </tr>
+          @if(!is_null($book->sub_subject))
+          <tr>
+            <th>Sub-Subject: </th>
+              <td>{{ $book->sub_subject }}</td>
+          </tr>
+          @endif
+          @if(!is_null($book->description))
           <tr>
             <th>Description: </th>
               <td>{{ $book->description }}</td>
           </tr>
+          @endif
         </table>
     </div>
 </div>

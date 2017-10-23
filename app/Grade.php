@@ -13,4 +13,7 @@ class Grade extends Model
 
   protected $guarded = ['id', ];
 
+  public function books() {
+    return $this->hasMany('App\Book');
+  }
 }

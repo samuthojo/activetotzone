@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkSheetSubSubjectsTable extends Migration
+class CreateSubSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateWorkSheetSubSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_sheet_sub_subjects', function (Blueprint $table) {
+        Schema::create('sub_subjects', function (Blueprint $table) {
           $table->increments('id');
-          $table->integer('work_sheet_subject_id')->unsigned();
+          $table->integer('subject_id')->unsigned();
           $table->string('name');
-          $table->text('description');
+          $table->text('description')->nullable();
           $table->timestamps();
           $table->softDeletes();
-          $table->foreign('work_sheet_subject_id')
-                ->references('id')->on('work_sheet_subjects');
+          $table->foreign('subject_id')
+                ->references('id')
+                ->on('subjects');
         });
     }
 
@@ -32,6 +33,6 @@ class CreateWorkSheetSubSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_sheet_sub_subjects');
+        Schema::dropIfExists('sub_subjects');
     }
 }

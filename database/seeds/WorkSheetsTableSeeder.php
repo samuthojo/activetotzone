@@ -12,13 +12,15 @@ class WorkSheetsTableSeeder extends Seeder
      */
     public function run()
     {
-      $types = [
-        'numbers', 'alphabets', 'words', 'sentences', 'drawings',
-      ];
+
       $faker = Faker\Factory::create();
-      foreach($types as $type) {
+      for($i = 1; $i < 19; $i++) {
         $work_sheet = [
-          'type' => $type,
+          'work_sheet_grade_id' => $i,
+          'work_sheet_subject_id' => $i,
+          'work_sheet_sub_subject_id' => $i,
+          'price' => $faker->numberBetween(7000, 30000),
+          'picture' => '1.jpg';
           'worksheet' => 'Worksheets-numbers.pdf',
         ];
         WorkSheet::create($work_sheet);

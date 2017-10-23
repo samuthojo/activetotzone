@@ -87,14 +87,22 @@ class LevelOne extends Controller {
 
     public function events() {
         $this->update();
+        $counter = 0;
         // $events = Event::orderBy('date', 'desc')->get();
         $events = Event::orderBy('date', 'desc')->limit(4)->get()->map(function($e){
+            global $counter;
+            $defLink = $counter == 0 ? 'https://goo.gl/PxrpT9' : 'www.facebook.com/activetotszone/photos/?ref=page_internal';
             $event = $e;
+            $event->link = (!$e->link || $e->link == null) ? $defLink : $e->link;
             $event->locationName = $e->getLocationName();
             $event->coordinates = $e->getLocationCoords();
 
+            $counter++;
             return $event;
         });
+
+        // return $events;
+
 
          return view('level_one.events', [
            'events' => $events,

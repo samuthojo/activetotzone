@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkSheetSubjectsTable extends Migration
+class CreateSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateWorkSheetSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_sheet_subjects', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->text('description');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::create('subjects', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('name');
+          $table->text('description')->nullable();
+          $table->timestamps();
+          $table->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateWorkSheetSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_sheet_subjects');
+        Schema::dropIfExists('subjects');
     }
 }
