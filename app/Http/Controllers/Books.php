@@ -29,6 +29,9 @@ class Books extends Controller
     }
 
     public function book_details(Book $book) {
+      $book->grade = $book->grade()->first()->name;
+      $book->subject = $book->subject()->first()->name;
+      $book->sub_subject = $book->subSubject()->first()->name;
       return view('cms.book_details', compact('book'));
     }
 

@@ -12,16 +12,25 @@ class WorkSheetsTableSeeder extends Seeder
      */
     public function run()
     {
-      $types = [
-        'numbers', 'alphabets', 'words', 'sentences', 'drawings',
-      ];
+
       $faker = Faker\Factory::create();
-      foreach($types as $type) {
+
+      $subjects = $sub_subjects = $grades = 1;
+
+      for($i = 1; $i < 19; $i++) {
         $work_sheet = [
-          'type' => $type,
+          'work_sheet_grade_id' => $grades,
+          'work_sheet_subject_id' => $subjects,
+          'work_sheet_sub_subject_id' => $sub_subjects,
+          'price' => $faker->numberBetween(7000, 30000),
+          'title' => $faker->sentence($faker->numberBetween(3, 5)),
+          'picture' => '1.jpg',
           'worksheet' => 'Worksheets-numbers.pdf',
         ];
         WorkSheet::create($work_sheet);
+        $subjects = ($subjects < 6) ? $subjects++ : 0;
+        $grades = ($grades < 3) ? $grades++ : 0;
+        $sub_subjects = ($sub_subjects < 14) ? $sub_subjects++ : 0;
       }
     }
 }

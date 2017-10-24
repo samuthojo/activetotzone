@@ -24,4 +24,16 @@ class Book extends Model
     * @var string
     */
    protected $dateFormat = 'Y-m-d';
+
+   public function grade() {
+     return $this->belongsTo('App\Grade');
+   }
+
+   public function subject() {
+     return $this->belongsTo('App\Subject');
+   }
+
+   public function subSubject() {
+     return $this->belongsTo('App\SubSubject');
+   }
 }

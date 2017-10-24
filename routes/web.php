@@ -41,6 +41,9 @@ Route::get('cms/blog_details/{blog_id}', 'Cms@blog_details');
 Route::get('cms/change_password', 'Admin@change_password');
 Route::post('cms/change_password_form', 'Admin@change_password_form');
 
+Route::get('sub_subjects/{subject}', 'Cms@subSubjects');
+Route::get('sheet_sub_subjects/{subject}', 'Cms@sheetSubSubjects');
+
 Route::post('admin/login', 'Admin@login');
 Route::get('logout', 'Admin@logout');
 Route::get('adminstart', 'Admin@adminstart');

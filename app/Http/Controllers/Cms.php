@@ -9,6 +9,12 @@ use App\SlideShow;
 use App\Event;
 use App\Book;
 use App\WorkSheet;
+use App\WorkSheetGrade;
+use App\WorkSheetSubject;
+use App\WorkSheetSubSubject;
+use App\Grade;
+use App\Subject;
+use App\SubSubject;
 use App\Testimonial;
 use App\ImportantDate;
 
@@ -26,6 +32,18 @@ class Cms extends Controller {
     $this->active_repo = $active_repo;
   }
 
+  private function getBookFilters() {
+    $grades = Grade::all();
+    $subjects = Subject::all();
+    return compact('grades', 'subjects');
+  }
+
+  private function getWorksheetFilters() {
+    $grades = WorkSheetGrade::all();
+    $subjects = WorkSheetSubject::all();
+    return compact('grades', 'subjects');
+  }
+
   public function form_add($form_name){
       if(strcasecmp($form_name, "team") == 0){
           return view('cms.team_add');
@@ -34,14 +52,14 @@ class Cms extends Controller {
       }else if(strcasecmp($form_name, "video") == 0){
           return view('cms.video_add');
       }else if(strcasecmp($form_name, "book") == 0){
-          return view('cms.book_add');
+          return view('cms.book_add', $this->getBookFilters());
       }else if(strcasecmp($form_name, "event") == 0){
           return view('cms.event_add');
       }else if(strcasecmp($form_name, "important_date") == 0){
           return view('cms.important_date_add');
       }
       else if(strcasecmp($form_name, "worksheet") == 0){
-          return view('cms.worksheet_add');
+          return view('cms.worksheet_add', $this->getWorksheetFilters());
       }
       else if(strcasecmp($form_name, "testimonial") == 0){
           return view('cms.testimonial_add');
@@ -92,9 +110,11 @@ class Cms extends Controller {
           ]);
       }
       else if(strcasecmp($form_name, "book") == 0){
-          return view("cms.book_edit",[
-            'edit_details' => $edit_details,
-          ]);
+        $edit_details = Book::find($id);
+        $grades = Grade::all();
+        $subjects = Subject::all();
+        $sub_subjects = $edit_details->subject()->first()->subSubjects;
+          return view("cms.book_edit", compact('edit_details', 'grades', 'subjects', 'sub_subjects'));
       }
       else if(strcasecmp($form_name, "event") == 0){
           return view("cms.event_edit",[
@@ -105,7 +125,11 @@ class Cms extends Controller {
         return view('cms.important_date_edit', compact('edit_details'));
       }
       else if(strcasecmp($form_name, 'worksheet') == 0) {
-        return view('cms.worksheet_edit', compact('edit_details'));
+        $edit_details = Worksheet::find($id);
+        $grades = WorkSheetGrade::all();
+        $subjects = WorkSheetSubject::all();
+        $sub_subjects = $edit_details->workSheetSubject()->first()->workSheetSubSubjects;
+        return view('cms.worksheet_edit', compact('edit_details', 'grades', 'subjects', 'sub_subjects'));
       }
       else if(strcasecmp($form_name, 'testimonial') == 0) {
         return view('cms.testimonial_edit', compact('edit_details'));
@@ -154,8 +178,31 @@ class Cms extends Controller {
     public function saveWorksheetChanges() {
       $request = request();
       $id = request('id');
-      $data = $request->except('id', 'worksheet');
-      if($request->hasFile('worksheet')) {
+      $data = $request->except('id', 'worksheet', 'picture');
+      $is_valid_file = false;
+      $is_valid_picture = false;
+      $worksheet = "";
+      $pic_name = "";
+      if($request->hasFile('worksheet') && $request->hasFile('picture')) {
+        $sheet = $request->file('worksheet');
+        $picture = $request->file('picture');
+        if($sheet->isValid()) {
+          $is_valid_file = true;
+          $worksheet = $sheet->getClientOriginalName();
+          $sheet->move('uploads/worksheets', $worksheet);
+        }
+        if($picture->isValid()) {
+          $is_valid_picture = true;
+          $pic_name = $picture->getClientOriginalName();
+          $picture->move('uploads/worksheets/cover_pictures', $pic_name);
+        }
+        if($is_valid_file && $is_valid_picture) {
+          $data = array_add($data, 'worksheet', $worksheet);
+          $data = array_add($data, 'picture', $pic_name);
+          WorkSheet::where('id', $id)->update($data);
+        }
+      }
+      else if ($request->hasFile('worksheet')) {
         $sheet = $request->file('worksheet');
         if($sheet->isValid()) {
           $worksheet = $sheet->getClientOriginalName();
@@ -163,7 +210,16 @@ class Cms extends Controller {
           $data = array_add($data, 'worksheet', $worksheet);
           WorkSheet::where('id', $id)->update($data);
         }
-      } else {
+      } else if($request->hasFile('picture')) {
+        $picture = $request->file('picture');
+        if($picture->isValid()) {
+          $pic_name = $picture->getClientOriginalName();
+          $picture->move('uploads/worksheets/cover_pictures', $pic_name);
+          $data = array_add($data, 'picture', $pic_name);
+          WorkSheet::where('id', $id)->update($data);
+        }
+      }
+      else {
         WorkSheet::where('id', $id)->update($data);
       }
       return $this->worksheets();
@@ -172,11 +228,7 @@ class Cms extends Controller {
     public function saveEventChanges() {
       $request = request();
       $id = request('id');
-      $link = request('link');
-      if(is_null($link)) {
-        $link = 'www.facebook.com/activetotszone/photos/?ref=page_internal';
-      }
-      $data = $request->except('id', 'file', 'date', 'link');
+      $data = $request->except('id', 'file', 'date');
       $date = Carbon::parse(request('date'))->format('Y-m-d');
       if($request->hasFile('file')) {
         $picture = $request->file('file');
@@ -186,11 +238,9 @@ class Cms extends Controller {
           $this->save_thumb('event', $picture_name);
           $data = array_add($data, 'picture', $picture_name);
           $data = array_add($data, 'date', $date);
-          $data = array_add($data, 'link', $link);
           Event::where('id', $id)->update($data);
         }
       } else {
-        $data = array_add($data, 'link', $link);
         $data = array_add($data, 'date', $date);
         Event::where('id', $id)->update($data);
       }
@@ -345,7 +395,7 @@ class Cms extends Controller {
               'blogs' => $blogs,
             ]);
         } else if(strcasecmp($form_name, 'book') == 0) {
-            extract($request->all());
+            $data = $request->except('book_url', 'cover_image');
             $image = "";
             $cover_image = "";
             $book = "";
@@ -369,8 +419,9 @@ class Cms extends Controller {
                 echo 'The upload was not successful, please retry';
               }
             }
-            Book::create(compact('title', 'author', 'date_published',
-                                 'description', 'cover_image', 'book_url'));
+            $data = array_add($data, 'book_url', $book_url);
+            $data = array_add($data, 'cover_image', $cover_image);
+            Book::create($data);
             $books = Book::orderBy('id', 'desc')->get();
             return view('cms.book', compact('books'));
         }
@@ -378,19 +429,16 @@ class Cms extends Controller {
           extract($request->all());
           $picture = "";
           $file = "";
-          if(is_null($link)) {
-            $link = 'www.facebook.com/activetotszone/photos/?ref=page_internal';
-          }
           if($request->hasFile('file')) {
             $file = $request->file('file');
             if($file->isValid()) {
               $picture = $file->getClientOriginalName();
               $file->move('uploads/events', $picture);
               $this->save_thumb('event', $picture);
+              Event::create(compact('title', 'date', 'link', 'description',
+                                    'location', 'time', 'picture'));
             }
           }
-          Event::create(compact('title', 'date', 'link', 'description',
-                                'location', 'time', 'picture'));
           return $this->events();
         }
         else if(strcasecmp($form_name, 'important_date') == 0) {
@@ -398,17 +446,31 @@ class Cms extends Controller {
           return $this->important_dates();
         }
         else if(strcasecmp($form_name, 'worksheet') == 0) {
-          extract($request->all());
+          $data = $request->except('worksheet', 'picture');
           $worksheet = "";
-          if($request->hasFile('worksheet')) {
+          $picture = "";
+          $is_valid_file = false;
+          $is_valid_picture = false;
+          if($request->hasFile('worksheet') && $request->hasFile('picture')) {
             $file = $request->file('worksheet');
+            $file2 = $request->file('picture');
             if($file->isValid()) {
               $worksheet = $file->getClientOriginalName();
               $file->move('uploads/worksheets', $worksheet);
-              // $this->worksheetPreview($worksheet);
+              $is_valid_file = true;
+            }
+            if($file2->isValid()) {
+              $picture = $file2->getClientOriginalName();
+              $file2->move('uploads/worksheets/cover_pictures', $picture);
+              $is_valid_picture = true;
+            }
+            if($is_valid_file && $is_valid_picture) {
+              $data = array_add($data, 'worksheet', $worksheet);
+              $data = array_add($data, 'picture', $picture);
+              WorkSheet::create($data);
             }
           }
-          WorkSheet::create(compact('type', 'worksheet'));
+
           return $this->worksheets();
         }
         else if(strcasecmp($form_name, 'testimonial') == 0) {
@@ -567,5 +629,13 @@ class Cms extends Controller {
     public function testimonials() {
       $testimonials = Testimonial::orderBy('id', 'desc')->get();
       return view('cms.testimonial', compact('testimonials'));
+    }
+
+    public function subSubjects(Subject $subject) {
+      return response()->json($subject->subSubjects);
+    }
+
+    public function sheetSubSubjects(WorkSheetSubject $subject) {
+      return response()->json($subject->workSheetSubSubjects);
     }
 }

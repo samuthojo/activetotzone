@@ -20,8 +20,7 @@ class EventsTableSeeder extends Seeder
               'title' => $faker->sentence($faker->numberBetween(3, 5)),
               'description' => $faker->realText(120),
               'picture' => "1.jpg",
-              'location' => $faker->city(),
-              'link' => "https://www.facebook.com/pg/activetotszone/photos/?tab=album&album_id=748504095349946",
+              'location' => array_rand([0,1]),
               'date' => $faker->date(),
               'time' => '7:30 AM',
           ];

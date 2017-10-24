@@ -9,7 +9,8 @@
             <thead>
             <tr>
                 <th scope="col">s/n. <span class="column-sorter"></span></th>
-                <th scope="col">Type <span class="column-sorter"></span></th>
+                <th scope="col">Title <span class="column-sorter"></span></th>
+                <th scope="col">Picture <span class="column-sorter"></span></th>
                 <th scope="col">Action <span class="column-sorter"></span></th>
             </tr>
             </thead>
@@ -19,8 +20,14 @@
                       @foreach($worksheets as $worksheet)
                           <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$worksheet['type']}}</td>
-
+                            <td>{{$worksheet->title}}</td>
+                            <td>
+                              <a href="{{asset('uploads/worksheets/cover_pictures/' . $worksheet->picture)}}"
+                                target="_blank">
+                              <img src="{{asset('uploads/worksheets/cover_pictures/' . $worksheet->picture)}}"
+                                 height="10%" width="auto" class="img-rounded img-responsive"
+                                 title='Click to view'>
+                               </a></td>
                           <td>
                               <div class="btn-group">
                                   <button type="button" class="btn btn-small btn-info"

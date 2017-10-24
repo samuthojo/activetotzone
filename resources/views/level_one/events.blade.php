@@ -17,6 +17,7 @@
             padding-top: 80px;
             background: #f0f0f0;
             overflow: hidden;
+            color: inherit !important;
         }
 
         #upComingEvent .bg{
@@ -47,7 +48,7 @@
             background-size: cover;
             overflow: hidden;
             background-position: center;
-            background-image: url({{asset('uploads/events/' . $next_event->picture)}});
+            background-image: url("{{asset('uploads/events/' . $next_event->picture)}}");
         }
 
         #upComingEvent #title .image img{
@@ -354,7 +355,7 @@
                             <p><i class="fa fa-clock-o"></i>From {{$next_event->time}}</p>
                             <p><i class="fa fa-map-marker"></i>{{$next_event->locationName}}</p>
 
-                            <a href="#" id="bookBtn" class="brand-color-purple">
+                            <a href="{{$next_event->link}}" target="_blank" id="bookBtn" class="brand-color-purple">
                                 BOOK EVENT
                             </a>
                         </div>
