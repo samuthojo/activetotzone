@@ -5,6 +5,9 @@
         body{
             background-color: #fafafa;
         }
+        .gradient-wrap{
+            color: inherit !important;
+        }
         #events{
             min-height: 500px;
         }
