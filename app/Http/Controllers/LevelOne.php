@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Grade;
 use App\ImportantDate;
 use App\SlideShow;
+use App\Subject;
+use App\SubSubject;
 use App\WorkSheet;
+use App\WorkSheetGrade;
+use App\WorkSheetSubject;
 use Illuminate\Http\Request;
 use App\Repositories\ActiveTotRepo;
 use App\Event;
@@ -61,9 +66,23 @@ class LevelOne extends Controller {
     }
 
     public function work_sheets() {
-        $work_sheets = WorkSheet::orderBy('id', 'desc')->get();
+        $work_sheets = WorkSheet::orderBy('id', 'asc')->get();
+
+        $all_subjects = WorkSheetSubject::orderBy('name', 'asc')->get();
+        $all_grades = WorkSheetGrade::with('workSheets')->orderBy('name', 'asc')->get();
+
+        $subjects = $all_subjects->filter(function ($s){
+            return count($s->workSheets()->get()) > 1;
+        });
+
+        $grades = $all_grades->filter(function ($g){
+            return count($g->workSheets()->get()) > 1;
+        });
+
         return view('work_sheets.index', [
             'work_sheets' => $work_sheets,
+            'subjects' => $subjects,
+            'grades' => $grades,
         ]);
     }
 
@@ -91,7 +110,7 @@ class LevelOne extends Controller {
         // $events = Event::orderBy('date', 'desc')->get();
         $events = Event::orderBy('date', 'desc')->limit(4)->get()->map(function($e){
             global $counter;
-            $defLink = $counter == 0 ? 'https://goo.gl/PxrpT9' : 'www.facebook.com/activetotszone/photos/?ref=page_internal';
+            $defLink = $counter == 0 ? 'https://goo.gl/Q4muqa' : 'www.facebook.com/activetotszone/photos/?ref=page_internal';
             $event = $e;
             $event->link = (!$e->link || $e->link == null) ? $defLink : $e->link;
             $event->locationName = $e->getLocationName();

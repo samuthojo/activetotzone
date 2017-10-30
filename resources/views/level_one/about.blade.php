@@ -215,7 +215,8 @@ Time: 10:44 AM -->
         var location= $("#location").val();
         var subject="Hello Active TOT's";
 //        var budget=$(".myform").find("input[type='radio']:checked");
-       var to="graysonjulius@gmail.com";
+       {{--var to="graysonjulius@gmail.com";--}}
+       var to="info@activetotzone.com";
 
         if(validateEmail($.trim(email.val()))){
             $(".ipf-button").html('<i class="fa fa-spinner" aria-hidden="true" style="line-height: 2"></i>')

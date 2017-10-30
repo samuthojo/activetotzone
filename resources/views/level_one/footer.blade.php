@@ -182,10 +182,12 @@
 
         var height = jQuery(window).scrollTop();
         var show_target=$('.ipf-classes');
-        if (height > show_target.offset().top-250){
-            $('.scroll-top-button').fadeIn();
-        }else  $('.scroll-top-button').fadeOut();
 
+        if(show_target.length){
+            if (height > show_target.offset().top-250){
+                $('.scroll-top-button').fadeIn();
+            }else  $('.scroll-top-button').fadeOut();
+        }
     });
     function goToTop(){
 
