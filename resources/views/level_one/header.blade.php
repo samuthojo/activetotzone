@@ -32,6 +32,7 @@
     <link  href="{{url('assets/css/flex.css')}}" rel="stylesheet"/>
 
     <link  href="{{url('assets/css/navigationlinks.css')}}" rel="stylesheet"/>
+    <link  href="{{url('assets/css/home.css')}}" rel="stylesheet"/>
     <link  href="{{url('assets/css/owl-carousel/owl.carousel.css')}}" rel="stylesheet"  type="text/css"/>
     <link  href="{{url('assets/css/owl-carousel/owl.theme.css')}}" rel="stylesheet"  type="text/css"/>
     <link  href="{{url('assets/css/owl-carousel/owl.transitions.css')}}" rel="stylesheet"  type="text/css"/>

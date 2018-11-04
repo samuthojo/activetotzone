@@ -9,23 +9,12 @@
         width: 100%;
         height: auto;
         display: table;
-        background-image: url("{{url('assets/images/banner.jpg')}}");
+        /* background-image: url("{{url('assets/images/banner.jpg')}}"); */
         padding:40px 5%;
         background-size: cover;
     }
 
-    .ipf-blog:after{
-        position: absolute;
-        top:0;
-        left:0;
-        content: "";
-        /*background-color: rgba(58, 83, 155, 0.85);*/
-        /*background-color: rgba(239, 72, 54, 0.7);*/
-        background-color: rgba(255, 165, 0, 0.81);
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
+
     .ipf-blog >h1{
         margin: 0 auto;
         background-position: center;
