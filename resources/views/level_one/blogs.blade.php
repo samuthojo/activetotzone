@@ -54,12 +54,12 @@
     }
 
      .read-more{
-       padding:13px 10px;
+       padding:11px 10px;
        min-width:200px;
        border:solid 2px black;
        border-radius:3px;
        text-align:center;
-       font-size:1.3em;
+       font-size:1.1em;
        font-weight:bold;
        text-transform:capitalize;
        position: absolute;
@@ -72,6 +72,7 @@
         padding: 10px 10px 5px;
         text-align: left;
         font-weight:bold;
+        color:#53539a;
     }
     .blog .post-summary{
         font-size: 1.3em;
@@ -127,5 +128,5 @@
 
     </div>
 
-    <h1 style="margin-top: 60px;font-family: 'Qanelas light',sans-serif!important;" >Follow Us On Instagram, <br/> <a href="https://www.instagram.com/activetotszone/" target="_blank">@activetotszone</a></h1>
+    
 </section>
