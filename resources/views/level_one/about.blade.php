@@ -92,7 +92,38 @@
         max-width:1100px;
 
     }
-
+    @media all and (max-width : 520px) {
+        .aboutus-container{
+            margin-top:-50px;
+        }
+        .cta-banner h1 {
+            font-size: 1.1em;
+            margin:0 10px;
+         }
+         .aboutus-container >h2{
+             margin-bottom:0px;
+         }
+        .aboutus-container >h1{
+            font-size:1.5em;
+            margin:0 10px;
+            font-family:"Qanelas bold",sans-serif;
+        }
+        .aboutus-container .values{
+            flex-direction:column;
+            padding: 50px 15px;
+         
+         }
+         .aboutus-container .values >div{
+             margin-left:0;
+             margin-bottom:30px;
+         }
+         .aboutus-container h3{
+             width:calc(100% - 20px);
+             font-size:1.1em;
+             margin: 20px auto;
+             
+         }
+    }
 </style>
 
 

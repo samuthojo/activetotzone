@@ -29,6 +29,17 @@
 
 
     }
+    @media all and (max-width : 520px) {
+            .testimonial h1 {
+            
+            font-size: 2em;
+            width: calc(100% - 10px);
+            margin: 0 auto;
+        }
+        .testimonial {
+             min-height: 350px;
+        }
+}
 </style>
 
 

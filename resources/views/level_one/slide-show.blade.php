@@ -46,7 +46,7 @@
             navigation: false,
             pagination: false,
             responsive: true,
-            transitionStyle: "goDown"//"fade,fadeUp,backSlide,goDown"
+            transitionStyle: "fade"//"fade,fadeUp,backSlide,goDown"
 
             // "singleItem:true" is a shortcut for:
             // items : 1,

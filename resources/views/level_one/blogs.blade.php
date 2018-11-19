@@ -84,16 +84,23 @@
         text-align: left!important;
     }
     @media all and (max-width : 520px) {
-        .blog{
-            width: 100%;
-            min-height: 450px;
-            display: table-cell;
-            margin:10px auto;
-            background-color: white;
-            z-index: 2;
-            float: left;
-
-        }
+            .blog-container{
+                flex-direction:column;
+                padding:20px 10px;
+            }
+            .ipf-blog{
+                padding: 50px 0 0
+            }
+            .ipf-blog >h1{
+                font-size: 1.5em;
+                margin: 0 10px;
+                font-family: "Qanelas bold",sans-serif;
+            }
+            .blog-container a{
+                margin-right:0;
+                margin-bottom:70px;
+            }
+        
     }
 </style>
 

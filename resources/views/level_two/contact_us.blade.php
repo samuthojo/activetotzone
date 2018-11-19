@@ -4,7 +4,6 @@
   <style>
     .ipf-contact-us{
         width: 100%;
-        background-color: #ECF0F1;;
         height:auto;
         display: table;
         padding: 50px 5%;
@@ -96,6 +95,9 @@
         text-align: center;
         line-height: 2;
     }
+    .contact-container{
+        
+    }
     @media all and (max-width : 780px) {
         .ipf-contact-us{
             top:-40px;
@@ -138,58 +140,10 @@
             <span>&nbsp;&nbsp;+255 719 884 169</span>
         </div>
     </div>
-    <br/><br/><br/><br/>
-    <span class="location-icon"></span>
-
-    <h1>Our Branches</h1><br/><br/><br/><br/>
-    <div class="chanika-branch">
-        <h1>kinyerezi</h1>
-        <h2 class="branch-contact">WhatsApp:-&nbsp; +255 712 210 899 | 7 AM - 6 PM</h2>
-        <div class="map-container" id="map1"></div>
-    </div>
-    <div class="mikocheni-branch">
-        <h1>Mikocheni</h1>
-        <h2 class="branch-contact">WhatsApp:-&nbsp; +255 689 604 866 | 7 AM - 6 PM </h2>
-        <div class="map-container" id="map2"></div>
-    </div>
-
+    
+   
 
 </section>
+@include('level_one.registration')
 
-<script type="text/javascript">
-
-
-    function initMap() {
-        var opt = { minZoom: 10, maxZoom: 16 };
-
-        var map1 = new google.maps.Map(document.getElementById('map1'), {
-            zoom: 15,
-            center: {lat: -6.8468984, lng: 39.153128}
-        });
-        var map2 = new google.maps.Map(document.getElementById('map2'), {
-            zoom: 16,
-            center: {lat: -6.76263, lng: 39.2501917}
-        });
-        map1.setOptions(opt);
-        map2.setOptions(opt);
-
-        var image = '{{url("assets/images/locationico.png")}}'
-        var image2 = '{{url("assets/images/mikocheniloc.png")}}'
-
-        var marker = new google.maps.Marker({
-            position: {lat:  -6.847170, lng: 39.150368},
-            map: map1,
-            icon: image
-        });
-        var marker = new google.maps.Marker({
-            position: {lat:  -6.762603, lng: 39.252380},
-            map: map2,
-            icon: image2
-        });
-    }
-</script>
-
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClGUi2nojUCAB1c-N1EJqkiBLId1hzx_s&callback=initMap">
-</script>
 @endsection

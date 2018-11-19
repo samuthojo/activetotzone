@@ -68,27 +68,19 @@
     }
 
     @media all and (max-width : 780px) {
-        .ipf-footer{
-            margin-bottom: 50px;
+        .map-container {
+        width: 100%;
+        height:400px;
         }
-        .ipf-footer >div{
-            height: 100%;
-            float: left;
-            width: 50%;
+        .footer-contacts{
+            flex-direction:column;
         }
-        .ipf-footer >div:first-child{
-            width: 100%;
+        .footer-contacts >div{
+            margin-right:0;
         }
-        .ipf-footer >div:last-child{
-            width: 100%;
+        .copywrite h1{
+            margin-bottom:40px;
         }
-        .footer-social >div >span{
-            display: none;
-        }
-        .footer-logo img{
-            width: 80%;
-        }
-
 
     }
 </style>

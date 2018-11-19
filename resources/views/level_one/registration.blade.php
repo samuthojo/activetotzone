@@ -2,8 +2,8 @@
 
     .registration{
         width:100%;
-        background-image:url("{{url('assets/images/pattern.jpg')}}");
-        background-image: url("http://127.0.0.1:8000/assets/images/black-Linen.png");
+        
+        background-image: url("{{url('assets/images/black-Linen.png')}}");
 
         background-attachment:fixed;
         margin-top:150px;
@@ -73,6 +73,14 @@
         text-align: center;
         display:none;
 
+    }
+    @media all and (max-width : 520px) {
+        .about-form{
+            width: 90%;
+        }
+        .registration > h1 {
+         font-size: 2em;
+         }
     }
 </style>
 

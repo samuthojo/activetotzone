@@ -40,6 +40,20 @@
         flex:1;
         /* background:red; */
     }
+    @media all and (max-width : 520px) {
+        .philosophy-section{
+            flex-direction:column;
+            padding: 40px 10px;
+        }
+        .philosophy-desc {
+          
+            margin-right: 0;
+            padding-right: 0;
+            }
+        .philosophy-images {
+            margin-top: 20px;
+        }
+    }
 </style>
 
 
