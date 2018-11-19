@@ -124,13 +124,10 @@
     <div class="social-container">
         <div>
             <a class="icon-circle " href="https://web.facebook.com/activetotszone/?fref=ts" target="_blank" style="background-color: #3b5998;" >
-                <i class="fa fa-facebook"></i>
+                <i class="fab fa-facebook-f"></i>
             </a>
-            <a class="icon-circle " href="https://twitter.com/activetotszone0" target="_blank" style="background-color: #00aced">
-                <i class="fa fa-twitter"></i>
-            </a>
-            <a class="icon-circle " href="https://www.instagram.com/activetotszone/" target="_blank" style="background-color: #517fa4">
-                <i class="fa fa-instagram"></i>
+            <a class="icon-circle " href="https://www.instagram.com/activetotszone/" target="_blank" style="background-color: #fb3958">
+                <i class="fab fa-instagram"></i>
             </a>
         </div>
     </div>

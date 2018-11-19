@@ -9,61 +9,20 @@
         min-height: 350px;
         display: table;
         background-image:url("{{url('assets/images/black-Linen.png')}}");
+        /* background:#111; */
+        background-attachment:fixed;
         padding: 30px 0;
+        display: flex;
+        flex-direction: column;
+        
     }
-    .ipf-footer >div{
+    .ipf-footer .footer-logo{
         height: 100%;
-        float: left;
-        width: 20%;
-        border-right: solid 1px rgba(174, 174, 174, 0.1);
-        padding: 20px 20px 20px 50px;
+        width: 300px;
+        margin:20px auto;
 
     }
-    .ipf-footer >div:first-child{
-        width: 30%;
-    }
-    .ipf-footer >div:last-child{
-        width: 30%;
-    }
-
-    .footer-links a{
-        width: 100%;
-        display: table;
-        color: white;
-        line-height:2;
-        font-size: 1.1em;
-    }
-
-    .ipf-footer div >h1{
-        font-family: "Love light", serif;
-        font-size: 1.5em;
-        color: white;
-        margin-bottom: 5px;
-    }
-    .footer-social >div,.footer-calendar >div{
-        width: 100%;
-        display: table;
-        margin-top: 7px;
-    }
-    .footer-social >div >span,.footer-calendar >div >span{
-        color: white;
-        line-height: 2.5;
-        left: 15px;
-        font-size: 1.1em;
-    }
-    .footer-calendar .icon-circle{
-        width: 60px;
-        height: 60px;
-    }
-    .footer-calendar >div >span{
-        line-height: 3;
-        font-size: 1.1em;
-    }
-    .footer-calendar >div i{
-        font-family: "Qanelas bold",sans-serif;
-        line-height: 2.5;
-        font-size: 0.9em;
-    }
+   
     .scroll-top-button{
         width: 60px!important;
         height: 60px!important;;
@@ -77,103 +36,83 @@
         background-size: contain;
         background-repeat: no-repeat;
     }
+    .footer-contacts{
+        display:flex;
+        padding: 20px 0;
+        justify-content: center;
+
+    }
+    .footer-contacts >div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 80px;
+        min-height: 200px;
+        justify-content: space-around;
+    }
+    .footer-contacts >div span{
+        font-size: 1.4em;
+         color: white;
+    }
+    .map-container{
+        width: 60%;
+        height: 500px;
+        overflow-x: hidden;
+        margin: 20px auto;
+    }
+    .copywrite h1{
+        text-align:center;
+        color:white;
+        font-size:1em;
+        margin-top: 40px
+    }
 
     @media all and (max-width : 780px) {
-        .ipf-footer{
-            margin-bottom: 50px;
+        .map-container {
+        width: 100%;
+        height:400px;
         }
-        .ipf-footer >div{
-            height: 100%;
-            float: left;
-            width: 50%;
+        .footer-contacts{
+            flex-direction:column;
         }
-        .ipf-footer >div:first-child{
-            width: 100%;
+        .footer-contacts >div{
+            margin-right:0;
         }
-        .ipf-footer >div:last-child{
-            width: 100%;
+        .copywrite h1{
+            margin-bottom:40px;
         }
-        .footer-social >div >span{
-            display: none;
-        }
-        .footer-logo img{
-            width: 80%;
-        }
-
 
     }
 </style>
 
 <section class="ipf-footer">
     <div class="footer-logo">
-        <img src="{{url('assets/images/logoactive_two.png')}}">
-        <h1 style="font-size:1em;margin-top: 40px">&copy; <?=date('Y') ?> all rights reserved.</h1>
-        <h1 style="font-size:1em;margin-top: 10px">Crafted <a href="http://ipfsoftwares.com" target="_blank">@iPF Softwares</a> </h1>
+        <img src="{{url('assets/images/logoactive_two.png')}}" width="250">
+        
     </div>
-    <div class="footer-links">
-        <h1>Quick links</h1>
-        <a href="{{url('about_us')}}">About Us</a>
-        <a href="{{url('blogs')}}">Blogs</a>
-        <a href="{{url('calendar')}}">Our Calendar</a>
-        <a href="{{url('contactUs')}}">Contact Us</a>
-        <a href="http://www.directory.co.tz/active-tots-zone" target="_blank">Directory</a>
-    </div>
-    <div class="footer-social">
-        <h1>Follow Us</h1>
-        <div>
-            <a class="icon-circle " href="https://web.facebook.com/activetotszone/?fref=ts" target="_blank" style="background-color: #3b5998;" >
-            <i class="fa fa-facebook"></i>
-            </a>
-            <span><a href="https://web.facebook.com/activetotszone/?fref=ts" target="_blank">Facebook</a></span>
-        </div>
-
-       <div>
-           <a class="icon-circle " href="https://twitter.com/activetotszone0" target="_blank" style="background-color: #00aced">
-            <i class="fa fa-twitter"></i>
-           </a>
-           <span><a href="https://twitter.com/activetotszone0" target="_blank">Twitter</a></span>
-       </div>
-       <div>
-           <a class="icon-circle " href="https://www.instagram.com/activetotszone/" target="_blank" style="background-color: #517fa4">
-            <i class="fa fa-instagram"></i>
-        </a>
-           <span><a  href="https://www.instagram.com/activetotszone/" target="_blank">Instagram</a></span>
-       </div>
-    </div>
-    <div class="footer-calendar">
-        <h1>Important Dates</h1>
-        @foreach($important_dates as $day)
-            <div class="layout center">
-                <a class="icon-circle {{$loop->index % 2 == 0 ? 'brand-purple'  : 'brand-purple'}}" >
-                    <i>
-                        {{$day->nicedate()}}
-                    </i>
-                </a>
-                <span>
-                    {{$day->issue}}
-                </span>
+    <div class="footer-contacts">
+            <div>
+                <img class="details-image" src="{{url('assets/images/emailico.png')}}" width="100"/> 
+                <span>info@activetotzone.com</span>
             </div>
-        @endforeach
-       <!-- <div>
-            <a class="icon-circle brand-green" >
-                <i>26,Aug</i>
-            </a>
-            <span>Play Day Mikocheni</span>
-        </div>
-        <div>
-            <a class="icon-circle brand-blue"  >
-                <i>17,July</i>
-            </a>
-            <span>School Opens</span>
-        </div>-->
-<!--        <div>-->
-<!--            <a class="icon-circle brand-purple"  >-->
-<!--                <i>5,Aug</i>-->
-<!--            </a>-->
-<!--            <span>Play Day Kinyerezi</span>-->
-<!--        </div>-->
+            <div>
+                <img class="details-image" src="{{url('assets/images/mikocheniloc.png')}}" width="40"/> 
+                <span>Kinyerezi, Dar Es Salaam</span>
+            </div>
+            <div>
+            <img class="details-image" src="{{url('assets/images/phone.png')}}" width="40"/>
+                <span>&nbsp;&nbsp;+255 719 884 169</span>
+             </div>
+           
+    
     </div>
-<!--    -->
+    <div class="map-container" id="map1">
+    
+    </div>
+    <div class="copywrite">
+        <h1 >&copy; <?=date('Y') ?> all rights reserved Active Tots Zone 
+       | Website Strategies By <a href="https://ipfsoftwares.com" target="_blank">@iPF Softwares</a> </h1>
+    </div>
 </section>
 <a class="scroll-top-button" onclick="goToTop()"></a>
 
@@ -198,4 +137,29 @@
         );
     }
 
+function initMap() {
+    var opt = { minZoom: 10, maxZoom: 16 };
+
+    var map1 = new google.maps.Map(document.getElementById('map1'), {
+        zoom: 15,
+        center: {lat: -6.8468984, lng: 39.153128}
+    });
+   
+    map1.setOptions(opt);
+   
+
+    var image = '{{url("assets/images/locationico.png")}}'
+   
+
+    var marker = new google.maps.Marker({
+        position: {lat:  -6.847170, lng: 39.150368},
+        map: map1,
+        icon: image
+    });
+   
+}
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClGUi2nojUCAB1c-N1EJqkiBLId1hzx_s&callback=initMap">
 </script>

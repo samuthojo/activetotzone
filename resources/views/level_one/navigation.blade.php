@@ -36,7 +36,7 @@
         <input type="checkbox" id="drop" />
         <ul class="menu layout justifie">
             <li id="home-li"><a href="{{url('home')}} ">home</a></li>
-            <li id="blog-li"><a href="{{url('about_us')}}" class="brand-blue-color">about us</a></li>
+            
             <li id="governance-li"><a href="https://medium.com/@activetotszone" target="_blank" class="brand-red-color">blogs</a></li>
             <li id="shows-li">
                 <label for="drop-4" class="toggle brand-blue-color">video lessons </label>
@@ -66,6 +66,7 @@
             <li id="media-li"><a href="{{url('gallery')}}" class="brand-blue-color">Gallery</a></li>
 
             <li id="media-li"><a href="{{url('contactUs')}}" class="brand-green-color">contact us</a></li>
+            <li id="blog-li"><a href="http://midway.ac.tz" class="brand-blue-color" target="_blank" >Primary School</a></li>
         </ul></nav>
 
 

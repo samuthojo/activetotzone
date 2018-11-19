@@ -9,93 +9,105 @@
         width: 100%;
         height: auto;
         display: table;
-        background-image: url("{{url('assets/images/banner.jpg')}}");
-        padding:40px 5%;
+        /* background-image: url("{{url('assets/images/banner.jpg')}}"); */
+        padding:90px 0 0;
         background-size: cover;
     }
 
-    .ipf-blog:after{
-        position: absolute;
-        top:0;
-        left:0;
-        content: "";
-        /*background-color: rgba(58, 83, 155, 0.85);*/
-        /*background-color: rgba(239, 72, 54, 0.7);*/
-        background-color: rgba(255, 165, 0, 0.81);
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-    .ipf-blog >h1{
-        margin: 0 auto;
-        background-position: center;
-        text-align: center;
-        font-size: 2em;
-        font-family: "Love light", serif;
-        color: white;
-        z-index: 2;
-        float: left;
-        width: 100%;
-    }
-    .blog{
-        width: 30.3333%;
-        min-height: 550px;
-        min-height: 480px;
-        display: table-cell;
-        margin:40px 1.5%;
-        background-color: white;
-        z-index: 2;
-        float: left;
 
+    .ipf-blog >h1{
+        text-align: center;
+        font-size: 2.5em;
+        color: black;
+        width: 100%;
+        margin-bottom:10px;
     }
+    .ipf-blog >h2{
+        font-size: 1em;
+        text-align: center;
+         margin-bottom: 50px;
+         font-weight: 400;
+    }
+    .blog-container{
+        display:flex;
+        width:100%;
+        justify-content: center;
+        padding:50px 5%;
+        padding-left:calc(5% + 50px);
+    }
+    .blog-container a{
+        margin:40px 0;
+        margin-right:50px;
+        z-index: 2;
+        flex:1;     
+    }
+    
 
     .blog-image{
-        max-height: 200px;
+        max-height: 350px;
         overflow: hidden;
+        margin-bottom:30px;
     }
 
-    .blog  >img{
-        width: 100%;
+    .blog-image img{
+        width:100%;
     }
 
-    .blog .post-date{
-        font-size: 0.9em;
-        line-height: 2;
-        font-family: "Qanelas bold", sans-serif;
-        padding:5px 10px;
-        text-align: left;
+     .read-more{
+       padding:11px 10px;
+       min-width:200px;
+       border:solid 2px black;
+       border-radius:3px;
+       text-align:center;
+       font-size:1.1em;
+       font-weight:bold;
+       text-transform:capitalize;
+       position: absolute;
+       bottom: -80px;
+       
+       
     }
     .blog .post-title{
-        font-size: 1.3em;
+        font-size:2em;
         padding: 10px 10px 5px;
         text-align: left;
-        font-family: "Qanelas Regular", sans-serif;
+        font-weight:bold;
+        color:#53539a;
     }
     .blog .post-summary{
-        font-size: 1em;
+        font-size: 1.3em;
         padding: 10px;
         text-align: left!important;
+        /* height:150px; */
     }
     .blog .post-summary p{
         text-align: left!important;
     }
     @media all and (max-width : 520px) {
-        .blog{
-            width: 100%;
-            min-height: 450px;
-            display: table-cell;
-            margin:10px auto;
-            background-color: white;
-            z-index: 2;
-            float: left;
-
-        }
+            .blog-container{
+                flex-direction:column;
+                padding:20px 10px;
+            }
+            .ipf-blog{
+                padding: 50px 0 0
+            }
+            .ipf-blog >h1{
+                font-size: 1.5em;
+                margin: 0 10px;
+                font-family: "Qanelas bold",sans-serif;
+            }
+            .blog-container a{
+                margin-right:0;
+                margin-bottom:70px;
+            }
+        
     }
 </style>
 
 <section class="ipf-blog">
-    <h1>Latest Blog Posts</h1>
-
+    <h1> Lessons & Tips To Parents. </h1>
+    <h2>We're doing our very best to publish new lessons every month for parents,<br/>keep visiting our website for latest articles.</h2>
+    <div class="blog-container">
     @if(count($blogs) > 0)
     	@foreach($blogs as $blog)
 			@php
@@ -110,18 +122,18 @@
 					<div class="blog-image">
                         <img src="{{asset('uploads/' . $image)}}">
                     </div>
-					<h1 class="{{'post-date' . ' ' . $label}}">
-						{{$blog['date']}}
-					</h1>
 					<h2 class="post-title">{{$blog['title']}}</h2>
 					<h3 class="post-summary">{!!str_limit($blog['description'],200)!!}</h3>
-					<h1 class="{{'post-date' . ' ' . $label}}">
-						read more
-					</h1>
+					
 				</div>
+                <h1 class="read-more">
+						Continue reading
+					</h1>
 			</a>
 		 @endforeach
 	@endif
 
-    <h1 style="margin-top: 60px;font-family: 'Qanelas light',sans-serif!important;" >Follow Us On Instagram, <br/> <a href="https://www.instagram.com/activetotszone/" target="_blank">@activetotszone</a></h1>
+    </div>
+
+    
 </section>
