@@ -9,6 +9,7 @@
         flex-direction:row;
         justify-content:center;
         align-items:center;
+        cursor:pointer;
     }
     .cta-banner h1{
         font-size:2em;
@@ -147,7 +148,7 @@
 
 <section class="aboutus-container">
         <div class="cta-banner">
-              <h1> In search for  best preschool in Dar ? Look No More !  </h2> <a>click here to enroll Your Child</a>
+              <h1>Searching for best preschool in Dar ? Look No More !  </h2> <a>click here to enroll Your Child</a>
         </div>
         <h1>Welcome To Active Tots Zone</h1>
         <h2>A Day Care & Preschool based in Kinyerezi,Dar Es Salaam</h2>
@@ -189,3 +190,11 @@
             we strive to provide a safe and developmentally appropriate environment for preschool age children.<br/> We teach to the need of each individual child and nurture their interest. Our focus is to provide a stimulating and hands-on educational experience which promotes each child's social, emotional, physical and cognitive development.
             </h3>
 </section>
+
+<script>
+    $(".cta-banner").click(function() {
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $(".registration").offset().top
+        }, 2000);
+    });
+    </script>
