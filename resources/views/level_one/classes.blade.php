@@ -39,6 +39,9 @@
     .philosophy-images{
         flex:1;
         /* background:red; */
+        background-image:url("{{url('assets/images/IMG_9176r.jpg')}}");
+        background-size:contain;
+        background-repeat:no-repeat;
     }
     @media all and (max-width : 520px) {
         .philosophy-section{
@@ -70,7 +73,9 @@
             </h3>
         </div>
         <div class="philosophy-images">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/JcfgYjgXkVw?controls=0&amp;start=59" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/9vfLoOvYAos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            
+        
         </div>
 
 

@@ -10,7 +10,7 @@
         height: auto;
         display: table;
         /* background-image: url("{{url('assets/images/banner.jpg')}}"); */
-        padding:90px 0 0;
+        padding:90px 0 50px;
         background-size: cover;
     }
 

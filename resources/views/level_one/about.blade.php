@@ -51,7 +51,7 @@
 
     }
     .aboutus-container .values >div{
-        background:black;
+        background:#f5f5f5;
         margin-left:20px;
         display:flex;
         flex:1;
@@ -91,6 +91,24 @@
         margin:50px auto;
         max-width:1100px;
 
+    }
+    .growth-image{
+        background-image:url("{{url('assets/images/growthactive.jpg')}}");
+        background-size:cover;
+        background-repeat:no-repeat;
+        background-position:center;
+    }
+    .learning-image{
+        background-image:url("{{url('assets/images/creativelearning.jpg')}}");
+        background-size:cover;
+        background-repeat:no-repeat;
+        background-position:center;
+    }
+    .play-image{
+        background-image:url("{{url('assets/images/playfun.jpg')}}");
+        background-size:cover;
+        background-repeat:no-repeat;
+        background-position:center;
     }
     @media all and (max-width : 520px) {
         .aboutus-container{
@@ -135,7 +153,7 @@
         <h2>A Day Care & Preschool based in Kinyerezi,Dar Es Salaam</h2>
         <div class="values">
             <div>
-                <div class="values-image"></div>            
+                <div class="values-image play-image"></div>            
                 <div class="values-desc">
                     <h1>FUN & PLAY</h1>
                     <h2>
@@ -145,7 +163,7 @@
             </div>
             
             <div>
-                <div class="values-image"></div>            
+                <div class="values-image learning-image"></div>            
                 <div class="values-desc">
                     <h1>Creative Learning</h1>
                     <h2>
@@ -155,7 +173,7 @@
             </div>
             
             <div>
-                <div class="values-image"></div>            
+                <div class="values-image growth-image"></div>            
                 <div class="values-desc">
                     <h1>Noticeble Growth</h1>
                     <h2>
