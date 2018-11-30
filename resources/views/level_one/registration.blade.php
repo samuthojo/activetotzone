@@ -3,12 +3,13 @@
     .registration{
         width:100%;
         
-        background-image: url("{{url('assets/images/black-Linen.png')}}");
-
+        /* background-image: url("{{url('assets/images/black-Linen.png')}}"); */
+        background:#f5f5f5;
         background-attachment:fixed;
         margin-top:150px;
         display:flex;
         flex-direction:column;
+        background-image:url("{{url('assets/images/pattern.jpg')}}");
 
 
         
@@ -22,26 +23,27 @@
     
     .registration > h1{
         
-        color: white;
+        color:#fff;
         font-size: 2.8em;
         font-family: "Qanelas bold",sans-serif;
         margin-bottom: 10px;
         margin-top: 50px;
         text-transform:uppercase;
         text-align:center;
+        
     }
     .registration > h2{
         font-size: 1em;
         text-align: center;
         margin-bottom: 20px;
         font-weight: 400;
-        color:white;
+        color:#FFF
     }
     .about-form input{
         width:100%;
         height:60px;
         border: solid 1px #000;
-        background:#ECF0F1; ;
+        background:#fff; ;
         outline: none;
         padding: 5px 10px;
         font-size: 1em;

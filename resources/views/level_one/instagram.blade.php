@@ -2,9 +2,7 @@
        
         .ipf-gallery{
             width: 100%;
-            /* min-height: 100vh; */
-            /*padding: 10px 5% 50px;*/
-            /*padding-top: 30px;*/
+           background:rgb(255, 189, 10);
             padding: 3px 2px;
         }
         @media all and (max-width : 520px) {

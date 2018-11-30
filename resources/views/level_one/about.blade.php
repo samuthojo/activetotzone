@@ -65,6 +65,7 @@
     .values-desc{
         width:100%;
         padding:20px 25px;
+height:calc(100% - 300px);
 
     }
     .values >div:first-child .values-desc{
@@ -158,7 +159,7 @@
                 <div class="values-desc">
                     <h1>FUN & PLAY</h1>
                     <h2>
-                    Praesent interdum est gravida vehicula est node maecenas loareet morbi a dosis luctus novum est praesent.
+                    "Play is a brain's favorite way of learning, It's a kid's job!"
                     </h2>
                 </div>            
             </div>
@@ -168,7 +169,7 @@
                 <div class="values-desc">
                     <h1>Creative Learning</h1>
                     <h2>
-                    Praesent interdum est gravida vehicula est node maecenas loareet morbi a dosis luctus novum est praesent.
+                    Children do not need to be ''taught'' to learn as it comes natural to them,  and they learn from everything they do.
                     </h2>
                 </div>            
             </div>
@@ -178,7 +179,7 @@
                 <div class="values-desc">
                     <h1>Noticeble Growth</h1>
                     <h2>
-                    Praesent interdum est gravida vehicula est node maecenas loareet morbi a dosis luctus novum est praesent.
+                    Adults have direct impact to the growth process of a child. To foster positive growth, we set a good example in our words and actions.
                     </h2>
                 </div>            
             </div>
@@ -187,7 +188,7 @@
            
         </div>
         <h3>
-            we strive to provide a safe and developmentally appropriate environment for preschool age children.<br/> We teach to the need of each individual child and nurture their interest. Our focus is to provide a stimulating and hands-on educational experience which promotes each child's social, emotional, physical and cognitive development.
+            We strive to provide a safe and developmentally appropriate environment for preschool age children.<br/> We teach to the need of each individual child and nurture their interest. Our focus is to provide a stimulating and hands-on educational experience which promotes each child's social, emotional, physical and cognitive development.
             </h3>
 </section>
 

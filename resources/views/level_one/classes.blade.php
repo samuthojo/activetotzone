@@ -29,7 +29,7 @@
     }
     .philosophy-desc h3{
         padding:25px 20px;
-        background:rgba(173, 193, 81, 0.58);
+        background:rgba(255, 76,0,0.8);
         
         font-size: 1.2em;
         margin-top:20px;
